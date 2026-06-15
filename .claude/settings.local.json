@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git checkout *)",
+      "Bash(git add *)",
+      "Bash(git commit -m '钢铁意志 v1.0 注释版 — 为全部源代码添加详细注释 *)",
+      "Bash(git remote *)",
+      "Bash(git push *)",
+      "Bash(git fetch *)",
+      "Bash(git pull *)",
+      "Bash(git reset *)",
+      "Bash(\"C:/Qt/Tools/mingw1310_64/bin/g++.exe\" --version)"
+    ]
+  }
+}
