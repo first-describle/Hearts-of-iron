@@ -1,7 +1,6 @@
-# 钢铁意志：第三帝国的黄昏
+# 互动叙事引擎
 
-> *战死沙场者唯有无尽长眠，惟有死者方能见证战争之终结。*  
-> —— 一部关于战争残酷与无义的文字悲剧
+> *万物皆有其终章，唯故事长存。*
 
 ---
 
@@ -9,56 +8,56 @@
 
 - [项目概述](#项目概述)
 - [技术栈](#技术栈)
-- [项目结构](#项目结构)
 - [构建与运行](#构建与运行)
-- [核心架构](#核心架构)
-  - [游戏引擎 (GameEngine)](#游戏引擎-gameengine)
-  - [玩家系统 (Player)](#玩家系统-player)
-  - [场景系统 (Scenario)](#场景系统-scenario)
-  - [故事节点与选择 (StoryNode & Choice)](#故事节点与选择-storynode--choice)
-  - [存档管理 (SaveManager)](#存档管理-savemanager)
-  - [音乐系统 (MusicPlayer)](#音乐系统-musicplayer)
+- [项目结构](#项目结构)
+- [引擎架构](#引擎架构)
+  - [DlcManager — DLC 管理](#dlcmanager--dlc-管理)
+  - [NodeEngine — 节点引擎](#nodeengine--节点引擎)
+  - [PlayerSystem — 玩家系统](#playersystem--玩家系统)
+  - [DiceSystem — 骰子系统](#dicesystem--骰子系统)
+  - [SaveManager — 存档管理](#savemanager--存档管理)
+  - [MusicPlayer — 音乐管理](#musicplayer--音乐管理)
 - [游戏系统](#游戏系统)
-  - [骰子判定系统](#骰子判定系统)
-  - [叙事标志系统](#叙事标志系统)
-  - [职业系统](#职业系统)
+  - [骰子判定](#骰子判定)
+  - [叙事标志](#叙事标志)
   - [打字机效果](#打字机效果)
   - [自动存档](#自动存档)
+- [官方 DLC：钢铁意志——第三帝国的黄昏](#官方-dlc钢铁意志第三帝国的黄昏)
+- [DLC 创作指南](#dlc-创作指南)
+  - [快速开始](#快速开始)
+  - [文件夹结构](#文件夹结构)
+  - [manifest.json 参考](#manifestjson-参考)
+  - [chapter JSON 参考](#chapter-json-参考)
+  - [节点类型](#节点类型)
+  - [Choice 字段速查](#choice-字段速查)
+  - [校验规则](#校验规则)
+  - [创作建议](#创作建议)
 - [UI 界面](#ui-界面)
-  - [主菜单 (MenuWidget)](#主菜单-menuwidget)
-  - [角色创建 (CharacterCreateWidget)](#角色创建-charactercreatewidget)
-  - [游戏主界面 (GameWidget)](#游戏主界面-gamewidget)
-  - [存档对话框 (SaveLoadDialog)](#存档对话框-saveloaddialog)
-  - [主窗口 (MainWindow)](#主窗口-mainwindow)
-- [场景详情](#场景详情)
-  - [黄色方案 (FallGelb)](#黄色方案-fallgelb)
-  - [不列颠空战 (Britain)](#不列颠空战-britain)
-  - [群狼海战 (WolfPack)](#群狼海战-wolfpack)
-  - [斯大林格勒战役 (Stalingrad)](#斯大林格勒战役-stalingrad)
-  - [柏林战役 (Berlin)](#柏林战役-berlin)
 - [美术风格](#美术风格)
-- [音乐系统](#音乐系统说明)
-- [数据流与生命周期](#数据流与生命周期)
+- [存档格式](#存档格式)
 - [已知局限与未来改进](#已知局限与未来改进)
-- [致谢](#致谢)
 
 ---
 
 ## 项目概述
 
-**钢铁意志：第三帝国的黄昏** 是一款以**第二次世界大战欧洲战场**为背景的交互式文字冒险游戏。玩家将从 1940 年德国发动黄色方案开始，依次经历不列颠空战、大西洋海战、斯大林格勒战役，最终在 1945 年柏林战役中迎来帝国覆灭的终章。
+**互动叙事引擎** 是一个 JSON 数据驱动的通用文字冒险游戏框架。引擎本身不绑定任何特定题材，所有故事内容——职业、章节、剧情文本、战斗判定——均由 **DLC 数据包** 定义。
 
-不同于传统战争游戏的正面叙事，本作聚焦于**战争的残酷与荒诞**——玩家将站在德军士兵的视角，亲历战友的死亡、平民的苦难、道德困境的抉择，在不断的消耗中见证第三帝国从巅峰走向崩溃。
+创作者只需编写 JSON 文件并放入 `dlc/` 目录，引擎启动时自动扫描加载，无需编译任何 C++ 代码。
 
-### 核心特色
+### 引擎特性
 
-- **六种职业路线**：步兵、坦克兵、战斗机飞行员、轰炸机飞行员、潜艇驾驶员、战列舰水兵，不同职业对应不同的初次战役与判定加成
-- **五个历史战役**：基于真实历史事件改编，每个战役包含 10-27 个分支叙事节点
-- **骰子战斗系统**：基于 D100 的随机判定，职业加成提升成功率
-- **叙事标志系统**：玩家的道德选择会留下永久标志，影响后续剧情
-- **分支多结局**：每个战役拥有胜利 / 失败多种结局，总计 15+ 种结局路径
-- **打字机文本渲染**：逐字打印的故事叙述，增强氛围沉浸感
-- **存档系统**：1 个自动存档位 + 3 个手动存档位，JSON 格式持久化
+- **DLC 即插即用**：一个文件夹 = 一个完整游戏，丢入 `dlc/` 即生效
+- **动态职业系统**：每个 DLC 自行定义职业，互不干扰
+- **多章节分支**：章节间通过 `unlock` 字段串接，支持线性或多分支推进
+- **D100 骰子战斗**：基于阈值的随机判定，职业匹配获得 +20 加成
+- **叙事标志系统**：玩家的选择留下永久标志，影响后续选项可见性
+- **打字机文本渲染**：逐字打印的故事叙述
+- **多槽位存档**：1 个自动存档位 + 3 个手动存档位，JSON 格式持久化
+
+### 官方 DLC
+
+项目附带 **钢铁意志：第三帝国的黄昏** 作为官方 DLC 示例——以二战德军士兵视角，经历五个历史战役的文字悲剧。
 
 ---
 
@@ -72,47 +71,6 @@
 | 音频 | QMediaPlayer + QAudioOutput |
 | 数据序列化 | QJsonDocument / QJsonObject |
 | 样式 | Qt Style Sheets (QSS) |
-
----
-
-## 项目结构
-
-```
-Hearts of iron/
-├── CMakeLists.txt              # CMake 构建配置
-├── main.cpp                    # 应用入口
-├── core/                       # 核心逻辑层
-│   ├── GameState.h             # 全局枚举与辅助函数
-│   ├── StoryNode.h             # 故事节点与选项数据结构
-│   ├── Player.h / .cpp         # 玩家数据模型与序列化
-│   ├── GameEngine.h / .cpp     # 核心游戏逻辑引擎
-│   ├── ScenarioBase.h / .cpp   # 场景抽象基类
-│   ├── SaveManager.h / .cpp    # 存档管理（JSON 持久化）
-│   └── MusicPlayer.h / .cpp    # 背景音乐管理
-├── scenarios/                  # 五大战役场景
-│   ├── FallGelbScenario.h/.cpp     # 黄色方案 (1940)
-│   ├── BritainScenario.h/.cpp      # 不列颠空战 (1940)
-│   ├── WolfPackScenario.h/.cpp     # 群狼海战 (1941-1943)
-│   ├── StalingradScenario.h/.cpp   # 斯大林格勒 (1942-1943)
-│   └── BerlinScenario.h/.cpp       # 柏林战役 (1945)
-├── ui/                         # 用户界面层
-│   ├── MainWindow.h / .cpp         # 主窗口与路由控制
-│   ├── MenuWidget.h / .cpp         # 主菜单界面
-│   ├── CharacterCreateWidget.h/.cpp # 角色创建界面
-│   ├── GameWidget.h / .cpp         # 游戏主界面（含打字机效果）
-│   └── SaveLoadDialog.h / .cpp     # 存档/读档对话框
-└── resources/
-    ├── resources.qrc            # Qt 资源文件索引
-    ├── style.qss                # 全局 QSS 样式表
-    └── music/                   # 背景音乐文件（需自行准备）
-        ├── main_theme.mp3
-        ├── fallgelb.mp3 / fallgelb_village.mp3 / fallgelb_battle.mp3 / fallgelb_triumph.mp3
-        ├── britain.mp3 / britain_air.mp3 / britain_night.mp3 / britain_triumph.mp3
-        ├── wolfpack.mp3 / wolfpack_deep.mp3 / wolfpack_triumph.mp3
-        ├── stalingrad.mp3 / stalingrad_winter.mp3 / stalingrad_end.mp3
-        ├── berlin.mp3 / berlin_elegy.mp3 / berlin_end.mp3
-        └── defeat_theme.mp3
-```
 
 ---
 
@@ -130,634 +88,527 @@ Hearts of iron/
 # 1. 进入项目根目录
 cd "Hearts of iron"
 
-# 2. 创建构建目录
-mkdir build && cd build
+# 2. CMake 配置（指定你的 Qt6 安装路径）
+cmake -B build -S . -DCMAKE_PREFIX_PATH="你的Qt6安装路径"
 
-# 3. CMake 配置
-cmake ..
+# 3. 编译
+cmake --build build --config Release
 
-# 4. 编译
-cmake --build . --config Release
+# 4. 部署 Qt 运行时 DLL
+windeployqt build/Release/钢铁意志_第三帝国.exe
 
 # 5. 运行
-./钢铁意志_第三帝国.exe
+./build/Release/钢铁意志_第三帝国.exe
 ```
 
-### 准备音乐文件
-
-在 `resources/music/` 下放入对应的 `.mp3` 文件（参见上方目录结构中的文件名列表）。如果音乐文件不存在，程序会静默跳过，不影响核心游戏逻辑运行。
+构建完成后，`dlc/` 目录会自动复制到可执行文件旁边，引擎启动时扫描加载。
 
 ---
 
-## 核心架构
-
-项目采用 **MVC 分层架构**：
+## 项目结构
 
 ```
-UI 层 (ui/)  ←→  核心引擎 (core/GameEngine)  ←→  数据层 (core/Player, ScenarioBase)
-                                        ↕
-                                  音乐 (core/MusicPlayer)  +  存档 (core/SaveManager)
+Hearts of iron/
+├── CMakeLists.txt
+├── main.cpp                       # 应用入口
+├── engine/                        # 通用引擎层（不依赖任何 DLC）
+│   ├── DlcTypes.h                 # 运行时数据结构定义
+│   ├── DlcManager.h / .cpp       # DLC 扫描、加载、校验
+│   ├── NodeEngine.h / .cpp       # 故事节点导航与选择执行
+│   ├── PlayerSystem.h / .cpp     # 动态职业玩家状态管理
+│   ├── DiceSystem.h / .cpp       # D100 骰子判定
+│   ├── SaveManager.h / .cpp      # JSON 存档管理
+│   └── MusicPlayer.h / .cpp      # 背景音乐管理
+├── ui/                            # 通用 UI 层
+│   ├── MainWindow.h / .cpp        # 主窗口与路由控制
+│   ├── MenuWidget.h / .cpp        # 主菜单 + DLC 选择
+│   ├── CharacterCreateWidget.h/.cpp # 角色创建（动态职业卡片）
+│   ├── GameWidget.h / .cpp        # 游戏主界面（含打字机效果）
+│   └── SaveLoadDialog.h / .cpp    # 存档/读档对话框
+├── dlc/                           # 🔑 DLC 内容目录（创作者只需关心这里）
+│   └── third_reich/               # 官方 DLC 示例
+│       ├── manifest.json           # DLC 元信息 + 职业定义 + 章节列表
+│       ├── chapters/               # 各章节 JSON 文件
+│       │   ├── ch01_fall_gelb.json
+│       │   ├── ch02_britain.json
+│       │   ├── ch03_wolf_pack.json
+│       │   ├── ch04_stalingrad.json
+│       │   └── ch05_berlin.json
+│       └── music/                  # 背景音乐文件
+├── resources/
+│   ├── resources.qrc
+│   └── style.qss                   # 全局 QSS 样式表
+└── docs/
+    └── superpowers/
+        ├── specs/2026-06-15-engine-refactor-design.md
+        └── plans/2026-06-15-engine-refactor.md
 ```
 
-### 游戏引擎 (GameEngine)
+---
 
-**文件：** `core/GameEngine.h`, `core/GameEngine.cpp`
+## 引擎架构
 
-是整个游戏的中央调度器，继承自 `QObject`，通过 Qt 信号槽机制与 UI 层通信。
+引擎由 **6 个独立模块** 组成，全部位于 `engine/` 目录。模块之间通过明确的接口解耦，UI 层通过 Qt 信号槽与引擎通信。
 
-#### 核心职责
+```
+main.cpp
+  └── MainWindow (UI 路由)
+        ├── DlcManager     ← 扫描 dlc/ 目录，解析 manifest.json
+        ├── NodeEngine     ← 故事节点导航 + 选择执行 + 章节跳转
+        ├── PlayerSystem   ← 动态职业 + 属性管理 + 标志位
+        ├── DiceSystem     ← D100 骰子判定
+        ├── SaveManager    ← JSON 存档
+        └── MusicPlayer    ← 背景音乐管理
+```
+
+### DlcManager — DLC 管理
+
+**文件：** `engine/DlcManager.h`, `engine/DlcManager.cpp`
+
+启动时扫描 `dlc/` 目录，递归查找每个子文件夹中的 `manifest.json`，解析并校验。
 
 | 方法 | 说明 |
 |------|------|
-| `newGame(name, class)` | 创建新游戏，初始化玩家数据，解锁对应职业的起始战役 |
-| `loadGame(player)` | 从存档恢复游戏，导航到保存时的节点 |
-| `startScenario(id)` | 启动指定战役场景，重置 HP/士气，跳转到职业对应的起始节点 |
-| `makeChoice(index)` | 处理玩家选择：检验条件 → 骰子判定 → 应用后果 → 导航跳转 |
-| `rollDice(bonusClasses)` | D100 骰子系统，职业匹配时 +20 加成，范围钳制在 [1, 120] |
+| `scanDirectory(path)` | 扫描目录，解析所有 manifest.json |
+| `getManifest(dlcId)` | 按 ID 获取 DLC 清单 |
+| `loadChapter(basePath, file, out)` | 加载单个章节 JSON 到运行时结构 |
+| `manifests()` | 获取所有已扫描的 DLC 列表 |
 
-#### 信号（Signal）
+**校验项（共 11 条）：** dlcId/title 非空、classes[] 非空、chapters[] 非空、class id 唯一性、chapter id 唯一性、章节文件存在性、startChapter 有效性、unlock 引用完整性。校验失败的 DLC 在菜单中灰显并提示错误。
 
-| 信号 | 触发时机 | 接收方 |
-|------|---------|--------|
-| `nodeChanged(node)` | 故事节点切换 | MainWindow → GameWidget 刷新界面 |
-| `statsChanged(hp, morale)` | HP 或士气值变化 | MainWindow → GameWidget 更新进度条 |
-| `combatResult(success, hpDelta, moraleDelta)` | 战斗判定结束 | MainWindow → 弹出结果弹窗 |
-| `scenarioVictory(id)` | 节点标记 `isVictory = true` | MainWindow → 解锁下一战役、弹窗提示 |
-| `scenarioDefeat(id)` | 节点标记 `isDefeat = true` | MainWindow → 切换失败音乐 |
-| `flagSet(flag)` | 叙事标志被设置 | 预留，用于 UI 侧特殊反馈 |
+### NodeEngine — 节点引擎
 
-#### 选择处理流程
+**文件：** `engine/NodeEngine.h`, `engine/NodeEngine.cpp`
 
-```
-玩家点击选项按钮
-    ↓
-GameWidget 发射 choiceMade(index)
-    ↓
-MainWindow::onChoiceMade(index)
-    ↓ (index == -2 表示进入下一战役，否则普通选择)
-GameEngine::makeChoice(index)
-    ↓
-1. 获取当前节点（空则返回）
-2. Narrative 节点 → 直接跳转到 nextNodeId
-3. Choice 节点 → 越界检查 → 职业限制检查 → 标志条件检查
-4. 战斗选项 → rollDice 判定 → 成功 / 失败分流
-5. 非战斗选项 → 直接应用后果 → 导航跳转
-6. HP ≤ 0 → 触发失败结局跳转
-```
+核心玩法循环：载入 DLC → 导航节点 → 处理选择 → 战斗判定 → 章节推进。
 
----
+| 方法 | 说明 |
+|------|------|
+| `startDlc(manifest, basePath, player)` | 初始化 DLC，进入起始/存档章节 |
+| `startChapter(chapterId)` | 开始指定章节，重置状态，导航到起始节点 |
+| `makeChoice(index)` | 执行选择：Narrative 跳转 / 非战斗应用后果 / 战斗骰子判定 |
+| `currentNode()` | 返回当前 StoryNode 指针 |
 
-### 玩家系统 (Player)
+**信号：** `nodeChanged`, `statsChanged`, `chapterVictory`, `chapterDefeat`, `combatResult`, `flagSet`
 
-**文件：** `core/Player.h`, `core/Player.cpp`
+### PlayerSystem — 玩家系统
 
-#### 数据结构
+**文件：** `engine/PlayerSystem.h`, `engine/PlayerSystem.cpp`
+
+玩家状态完全由 DLC JSON 定义，无硬编码职业枚举。
 
 ```cpp
-class Player {
-    QString     name;               // 玩家姓名
-    PlayerClass playerClass;        // 职业
-    int         hp      = 100;      // 当前生命值 [0, 100]
-    int         maxHp   = 100;      // 最大生命值
-    int         morale  = 100;      // 当前士气值 [0, 100]
-    int         maxMorale = 100;    // 最大士气值
-    QSet<QString> flags;           // 叙事标志集合
-    ScenarioId  currentScenario;    // 当前所在场景
-    QString     currentNodeId;      // 当前节点 ID
-    QSet<int>   unlockedScenarios;  // 已解锁场景 ID 集合
+class PlayerSystem {
+    QString name;              // 玩家姓名
+    QString classId;           // 职业 ID（字符串，来自 DLC manifest）
+    QString dlcId;             // 所属 DLC ID
+    int     hp        = 100;
+    int     morale    = 100;
+    QSet<QString> flags;     // 叙事标志集合
+    QString currentChapter;   // 当前章节 ID
+    QString currentNodeId;    // 当前节点 ID
+    QSet<QString> unlockedChapters; // 已解锁章节
 };
 ```
 
-#### 核心规则
+### DiceSystem — 骰子系统
 
-- **死亡判定：** `hp <= 0 || morale <= 0` 即判定阵亡
-- **HP/士气钳制：** 使用 `std::clamp` 保证值永远在 `[0, max]` 范围内
-- **`resetStats()`：** 新战役开始时重置 HP/士气至满值，清空标志和当前节点
-
-#### JSON 序列化
-
-- `toJson()` — 导出完整的玩家状态为 JSON，包含标志数组和已解锁场景数组
-- `fromJson(obj)` — 从 JSON 恢复玩家状态，带默认值容错（空字段默认 100）
-
----
-
-### 场景系统 (Scenario)
-
-**文件：** `core/ScenarioBase.h`, `core/ScenarioBase.cpp`, `scenarios/*.h`, `scenarios/*.cpp`
-
-#### 基类接口
+**文件：** `engine/DiceSystem.h`, `engine/DiceSystem.cpp`
 
 ```cpp
-class ScenarioBase {
-    virtual void initialize() = 0;                              // 初始化所有节点
-    virtual ScenarioId scenarioId() const = 0;                  // 返回场景枚举
-    virtual QString startNodeId(PlayerClass cls) const = 0;    // 职业起点节点
-    virtual QString defeatNodeId() const;                       // 失败节点 ID（可覆盖）
-    const StoryNode* getNode(const QString &id) const;          // 按 ID 查找节点
-};
+int roll()                        // D100 基础掷骰 [1, 100]
+int rollWithBonus(bonus, classId) // 职业匹配则 +20，钳制 [1, 120]
+static bool checkSuccess(roll, threshold) // roll >= threshold
 ```
 
-#### 注册与生命周期
+| 阈值 | 无加成成功率 | 有加成成功率 | 典型场景 |
+|------|------------|------------|---------|
+| 40 | 61% | 81% | 谨慎策略 |
+| 50 | 51% | 71% | 标准战斗 |
+| 60 | 41% | 61% | 危险行动 |
+| 70 | 31% | 51% | 绝望行动 |
 
-所有五个场景在 `GameEngine` 构造函数中通过 `registerScenarios()` 统一创建并初始化：
+### SaveManager — 存档管理
 
-```cpp
-addScenario(std::make_unique<FallGelbScenario>());
-addScenario(std::make_unique<BritainScenario>());
-// ...
-```
-
-每个场景构造函数调用 `initialize()`，通过多次调用 `addNode(storyNode)` 构建内部 `QMap<QString, StoryNode>` 的节点图。
-
-#### 存档不持久化场景数据
-
-场景数据（节点文本、选项逻辑）是硬编码的常量图，不随存档序列化。只有玩家状态被保存。
-
----
-
-### 故事节点与选择 (StoryNode & Choice)
-
-**文件：** `core/StoryNode.h`
-
-#### Choice 数据结构
-
-```cpp
-struct Choice {
-    QString text;                          // 按钮显示文字
-    QString nextNodeId;                    // 默认跳转目标
-    int hpDelta = 0;                       // HP 变化量
-    int moraleDelta = 0;                   // 士气变化量
-    QSet<QString> requiredFlags;          // 前置标志（未拥有则不可见）
-    QSet<QString> grantedFlags;           // 选择后设置的标志
-    bool classRestricted = false;          // 是否职业限制
-    QList<PlayerClass> allowedClasses;    // 允许的职业列表
-    bool isCombat = false;                // 是否为战斗选项
-    int combatThreshold = 50;              // 骰子判定阈值
-    QList<PlayerClass> bonusClasses;      // 享受骰子加成的职业
-    QString successNodeId;                // 战斗成功跳转
-    QString failureNodeId;                // 战斗失败跳转
-    int failHpDelta = -20;                // 失败 HP 损失
-    int failMoraleDelta = -15;            // 失败士气损失
-};
-```
-
-#### StoryNode 节点类型
-
-| NodeType | 说明 | 界面行为 |
-|----------|------|---------|
-| `Narrative` | 纯叙事节点 | 显示"【继续】"按钮，点击跳转到 `nextNodeId` |
-| `Choice` | 选择分支节点 | 生成对应选项按钮，包含战斗 / 非战斗选项 |
-| `Ending` | 终止节点 | 显示"进入下一战役"或"返回主页"按钮 |
-
-#### 职业专属文本
-
-`StoryNode::classText` 是一个 `QMap<PlayerClass, QString>`，用于覆盖不同职业在同一节点的显示文本。`textFor(cls)` 方法优先返回职业专属文本，否则返回通用文本。
-
----
-
-### 存档管理 (SaveManager)
-
-**文件：** `core/SaveManager.h`, `core/SaveManager.cpp`
-
-#### 存档槽位设计
+**文件：** `engine/SaveManager.h`, `engine/SaveManager.cpp`
 
 | 槽位 | 用途 | 可手动覆盖 |
 |------|------|-----------|
-| Slot 0 | 自动存档 | ❌ 不可（UI 灰化禁用） |
-| Slot 1-3 | 手动存档 | ✅ 可 |
+| Slot 0 | 自动存档（每次节点切换自动写入） | ❌ |
+| Slot 1-3 | 手动存档 | ✅ |
 
-#### 存储路径
+存储路径：`%APPDATA%/HeartsOfIronGame/saves/save_X.json`
 
-```
-%APPDATA%/HeartsOfIronGame/saves/save_0.json  (自动存档)
-%APPDATA%/HeartsOfIronGame/saves/save_1.json  (手动存档)
-...
-```
+### MusicPlayer — 音乐管理
 
-#### 存档数据结构
+**文件：** `engine/MusicPlayer.h`, `engine/MusicPlayer.cpp`
 
-```json
-{
-    "slot": 1,
-    "autoSave": false,
-    "timestamp": "1940-05-10 03:00:00",
-    "player": {
-        "name": "汉斯 · 缪勒",
-        "playerClass": 0,
-        "hp": 85,
-        "maxHp": 100,
-        "morale": 90,
-        "maxMorale": 100,
-        "currentScenario": 0,
-        "currentNodeId": "fg_village_enter",
-        "flags": ["spared_village"],
-        "unlockedScenarios": [0, 1]
-    }
-}
-```
-
----
-
-### 音乐系统 (MusicPlayer)
-
-**文件：** `core/MusicPlayer.h`, `core/MusicPlayer.cpp`
-
-#### 设计要点
-
-- 使用 `QMediaPlayer` + `QAudioOutput` 实现音频播放
-- 通过 **键-路径映射**（`QMap<QString, QString>`）管理音轨——场景节点通过 `musicKey` 声明需要播放的音乐
-- **循环播放：** 默认开启，检测 `EndOfMedia` 状态后重置位置并重播
-- **静音支持：** `setMuted(true)` 将音量设为零，但不改变存储的音量值
-- **播放去重：** 如果请求的 key 等于当前 key 且正在播放，则跳过
-- **文件容错：** 如果音乐文件不存在（`QFileInfo::exists` 返回 false），静默跳过不崩溃
-
-#### 已注册的音轨
-
-| 键 (key) | 对应文件 | 使用场景 |
-|-----------|---------|---------|
-| `main_theme` | main_theme.mp3 | 主菜单 |
-| `fallgelb` | fallgelb.mp3 | 黄色方案 — 行军、命令 |
-| `fallgelb_village` | fallgelb_village.mp3 | 黄色方案 — 比利时村庄 |
-| `fallgelb_battle` | fallgelb_battle.mp3 | 黄色方案 — 战斗 |
-| `fallgelb_triumph` | fallgelb_triumph.mp3 | 黄色方案 — 胜利 |
-| `britain` | britain.mp3 | 不列颠空战 — 简报、基地 |
-| `britain_air` | britain_air.mp3 | 不列颠空战 — 空中 |
-| `britain_night` | britain_night.mp3 | 不列颠空战 — 夜间轰炸 |
-| `britain_triumph` | britain_triumph.mp3 | 不列颠空战 — 胜利 |
-| `wolfpack` | wolfpack.mp3 | 群狼海战 — 海面、基地 |
-| `wolfpack_deep` | wolfpack_deep.mp3 | 群狼海战 — 深潜、战斗 |
-| `wolfpack_triumph` | wolfpack_triumph.mp3 | 群狼海战 — 胜利 |
-| `stalingrad` | stalingrad.mp3 | 斯大林格勒 — 城区战斗 |
-| `stalingrad_winter` | stalingrad_winter.mp3 | 斯大林格勒 — 冬季 |
-| `stalingrad_end` | stalingrad_end.mp3 | 斯大林格勒 — 结局 |
-| `berlin` | berlin.mp3 | 柏林战役 — 战斗 |
-| `berlin_elegy` | berlin_elegy.mp3 | 柏林战役 — 终局挽歌 |
-| `berlin_end` | berlin_end.mp3 | 柏林战役 — 结局 |
-| `defeat_theme` | defeat_theme.mp3 | 所有战役失败 |
+通过键-路径映射管理音轨。DLC manifest 中定义 `music` 映射表，引擎启动时批量注册。循环播放、静音跳过、文件缺失静默容错。
 
 ---
 
 ## 游戏系统
 
-### 骰子判定系统
+### 骰子判定
 
-所有战斗选项通过 **D100 骰子系统** 进行随机判定：
+所有战斗选项通过 D100 骰子系统随机判定：
 
-```cpp
-int rollDice(const QList<PlayerClass> &bonusClasses) const {
-    int roll = QRandomGenerator::global()->bounded(1, 101); // [1, 100]
-    if (bonusClasses.contains(m_player.playerClass))
-        roll += 20;                       // 职业匹配 → +20 加成
-    return qBound(1, roll, 120);          // 钳制范围 [1, 120]
-}
+```
+最终值 = 基础 1-100 随机 + (职业在 bonusClasses 中 ? 20 : 0)
+结果：最终值 ≥ combatThreshold → 成功，否则失败
 ```
 
-判定逻辑：
-```
-最终投掷值 = 基础 1-100 随机数 + (职业匹配 ? 20 : 0)
-结果：最终值 ≥ 选项的 combatThreshold → 成功，否则失败
-```
+### 叙事标志
 
-| 阈值 | 无加成成功率 | 有加成成功率 | 典型场景 |
-|------|------------|------------|---------|
-| 40 | 61% | 81% | 谨慎策略（迂回、等待） |
-| 50 | 51% | 71% | 标准战斗 |
-| 55 | 46% | 66% | 高强度战斗（强攻） |
-| 60 | 41% | 61% | 危险行动（正面突击） |
-| 65 | 36% | 56% | 极限行动（RAF 反击、坦克突围） |
-| 70 | 31% | 51% | 绝望行动（强攻伏尔加河岸） |
-| 90 | 11% | 31% | 最终死战（斯大林格勒最后抵抗） |
-
-### 叙事标志系统
-
-玩家的道德抉择会留下永久的**叙事标志**（`QSet<QString> flags`），影响后续选项的可见性：
-
-| 标志 | 来源场景 | 触发条件 | 效果 |
-|------|---------|---------|------|
-| `spared_village` | 黄色方案 | 不骚扰比利时村民 | 解锁后续人道相关选项 |
-| `waited_for_civilians` | 黄色方案 | 等待难民自行疏散 | 影响后续叙事文本 |
-| `reflected` | 黄色方案 | 独自反思胜利 | 改变结局叙事 |
-| `refused_bomb` | 不列颠空战 | 拒绝轰炸非军事目标 | 影响军官会谈文本 |
-| `questioned_london` | 不列颠空战 | 质疑伦敦轰炸令 | 影响道德叙事走向 |
-| `saved_survivors` | 群狼海战 | 违反命令救助商船幸存者 | 改变道德叙事 |
-| `shared_ration` | 斯大林格勒 | 分享最后口粮 | 改变冬季叙事氛围 |
-| `called_artillery` | 斯大林格勒 | 呼叫炮兵覆盖工厂 | 反映道德代价 |
-| `wrote_truth` | 群狼海战 | 如实写信描述战争 | 改变结局叙事 |
-| `saved_boy` | 柏林战役 | 劝孩子回家 | 改变国会大厦叙事 |
-
-### 职业系统
-
-#### 六大职业
-
-| 职业 | 初战场景 | 可用场景 | 判定加成的典型场景 |
-|------|---------|---------|------------------|
-| **步兵** | 黄色方案 | FallGelb, Stalingrad, Berlin | 地面强攻、匍匐推进、逐楼清扫 |
-| **坦克兵** | 黄色方案 | FallGelb, Stalingrad, Berlin | 坦克迂回、装甲强攻 |
-| **战斗机飞行员** | 不列颠空战 | Britain, Berlin (防空塔) | 空战狗斗、编队作战 |
-| **轰炸机飞行员** | 不列颠空战 | Britain, Berlin (防空塔) | 燃油管理、空战判定 |
-| **潜艇驾驶员** | 群狼海战 | WolfPack, Berlin (河岸防御) | 鱼雷攻击、深潜规避 |
-| **战列舰水兵** | 群狼海战 | WolfPack, Berlin (河岸防御) | 海上战斗、落水生存 |
-
-#### 职业限制
-
-某些选项通过 `classRestricted = true` 和 `allowedClasses` 限制仅特定职业可选。不满足限制的选项会直接在 UI 中隐藏不生成按钮。
-
----
+玩家选择可设置永久标志（`grantedFlags`），后续选项可通过 `requiredFlags` 检查标志来决定是否可见。
 
 ### 打字机效果
 
-**实现文件：** `ui/GameWidget.cpp`
-
-- 使用 `QTimer` 每 20ms 打印一个字符
-- 打字期间**禁用选项按钮和存档/读档按钮**，防止玩家提前操作
-- 支持**点击跳过**：安装事件过滤器监听 `QTextBrowser` 和其 `viewport` 的 `MouseButtonPress` 事件
-- 文字全部打印完毕后调用 `displayFullText()`，启用所有按钮
+`QTimer` 每 20ms 逐字打印，打字期间禁用所有交互按钮。点击文本区域可跳过动画直接显示全文。
 
 ### 自动存档
 
-每次 `onNodeChanged` 触发时自动写入 Slot 0（自动存档位），确保玩家进度不丢失。
+每次 `onNodeChanged` 触发时自动写入 Slot 0。
+
+---
+
+## 官方 DLC：钢铁意志——第三帝国的黄昏
+
+以二战德军士兵视角，经历 1940-1945 年五场历史战役的文字悲剧。
+
+| 章节 | 历史背景 | 可用职业 | 节点数 |
+|------|---------|---------|--------|
+| 黄色方案 | 1940年5月，阿登森林突破 | 步兵、坦克兵 | 28 |
+| 不列颠空战 | 1940年7-10月，英吉利海峡 | 战斗机/轰炸机飞行员 | 27 |
+| 群狼海战 | 1941-1943年，大西洋 | 潜艇/战列舰驾驶员 | 25 |
+| 斯大林格勒战役 | 1942-1943年，伏尔加河畔 | 步兵、坦克兵 | 27 |
+| 柏林战役 | 1945年4月，帝国末日 | 全部六种职业 | 22 |
+
+总计 129 个故事节点，15+ 种结局路径。
+
+---
+
+## DLC 创作指南
+
+> **你不需要懂 C++，只需要会写 JSON。**
+
+### 快速开始
+
+1. 在 `dlc/` 下新建文件夹，命名如 `dlc/my_story/`
+2. 创建 `manifest.json`（元信息 + 职业 + 章节列表）
+3. 创建 `chapters/` 目录，编写各章节 JSON 文件
+4. （可选）放入 `music/` 音频文件
+5. 启动游戏 → 引擎自动加载 → DLC 列表中出现你的作品
+
+### 文件夹结构
+
+```
+dlc/my_story/
+├── manifest.json        # 必需：DLC 元信息
+├── chapters/            # 必需：章节 JSON 文件
+│   ├── ch01.json
+│   ├── ch02.json
+│   └── ...
+└── music/               # 可选：背景音乐
+    ├── main_theme.mp3
+    └── battle.mp3
+```
+
+### manifest.json 参考
+
+```jsonc
+{
+  // ===== 基本信息 =====
+  "dlcId": "my_story",              // 唯一标识（字母+下划线）
+  "title": "我的故事",               // 显示标题
+  "subtitle": "一段传奇冒险",        // 副标题
+  "author": "你的名字",              // 作者署名
+  "version": "1.0.0",               // 版本号
+
+  // ===== 职业定义 =====
+  "classes": [
+    {
+      "id": "warrior",              // 职业唯一ID
+      "name": "战士",               // 显示名称
+      "desc": "勇猛的前线斗士。"     // 描述文本（显示在角色创建预览中）
+    },
+    {
+      "id": "mage",
+      "name": "法师",
+      "desc": "掌控元素之力。"
+    }
+    // ... 至少 1 个职业
+  ],
+
+  // ===== 章节列表 =====
+  "chapters": [
+    {
+      "id": "ch01",                 // 章节唯一ID
+      "file": "chapters/ch01.json", // JSON 文件路径（相对于 DLC 文件夹）
+      "name": "第一章",              // 显示名称
+      "subtitle": "命运的起点",      // 副标题
+      "unlock": "start"             // 解锁条件："start" = 初始可用，
+    },                              //             其他章节ID = 完成该章节后解锁
+    {
+      "id": "ch02",
+      "file": "chapters/ch02.json",
+      "name": "第二章",
+      "subtitle": "黑暗降临",
+      "unlock": "ch01"              // 完成 ch01 后解锁
+    }
+  ],
+
+  // ===== 起始章节 =====
+  "startChapter": "ch01",           // 新游戏从哪个章节开始
+
+  // ===== 音乐映射 =====
+  "music": {
+    "intro": "music/main_theme.mp3",   // 键 → 文件路径（相对于 DLC 文件夹）
+    "battle": "music/battle.mp3"
+    // 章节节点中通过 musicKey 引用这里的键
+  }
+}
+```
+
+### chapter JSON 参考
+
+```jsonc
+{
+  "chapterId": "ch01",              // 章节ID
+  "startNodeId": "start",           // 起始节点ID
+  "defeatNodeId": "defeated",       // 可选：战斗死亡后跳转的失败节点
+
+  "nodes": [
+    // ===== Narrative 节点 =====
+    {
+      "id": "start",
+      "type": "narrative",          // 纯叙事 → 一个"继续"按钮
+      "locationTitle": "第一章 · 启程",
+      "musicKey": "intro",
+      "text": "故事从这里开始...\n\n多段落用 \\n\\n 分隔。",
+      "nextNodeId": "choice_1"      // 继续后跳转的节点
+    },
+
+    // ===== Choice 节点（普通选择） =====
+    {
+      "id": "choice_1",
+      "type": "choice",
+      "locationTitle": "十字路口",
+      "musicKey": "intro",
+      "text": "前方出现两条路，你选择——",
+      "choices": [
+        {
+          "text": "【左转】走向森林",
+          "nextNodeId": "forest_path",
+          "moraleDelta": 5,          // 士气变化（可选）
+          "grantedFlags": ["chose_forest"]  // 设置叙事标志（可选）
+        },
+        {
+          "text": "【右转】走向城镇",
+          "nextNodeId": "town_path",
+          "hpDelta": -10,            // 生命变化（可选）
+          "classRestricted": true,   // 职业限制（可选）
+          "allowedClasses": ["warrior"]  // 仅战士可选
+        }
+      ]
+    },
+
+    // ===== Choice 节点（战斗选项） =====
+    {
+      "id": "battle_1",
+      "type": "choice",
+      "locationTitle": "遭遇敌人",
+      "text": "敌人拦住了去路！",
+      "choices": [
+        {
+          "text": "【正面迎战】",
+          "isCombat": true,           // 战斗选项
+          "combatThreshold": 50,      // 骰子阈值（>= 此值成功）
+          "bonusClasses": ["warrior"],// 这些职业骰子 +20
+          "successNodeId": "win",     // 成功跳转
+          "failureNodeId": "lose",    // 失败跳转
+          "hpDelta": 0,
+          "moraleDelta": 10,
+          "failHpDelta": -25,        // 失败时生命损失
+          "failMoraleDelta": -15     // 失败时士气损失
+        },
+        {
+          "text": "【逃跑】",
+          "nextNodeId": "escape",
+          "moraleDelta": -10
+        }
+      ]
+    },
+
+    // ===== Ending 节点（胜利） =====
+    {
+      "id": "victory_end",
+      "type": "ending",
+      "isVictory": true,
+      "locationTitle": "第一章 — 结束",
+      "text": "你成功穿越了森林..."
+    },
+
+    // ===== Ending 节点（失败） =====
+    {
+      "id": "defeated",
+      "type": "ending",
+      "isDefeat": true,
+      "locationTitle": "第一章 — 阵亡",
+      "text": "你倒在了战场上..."
+    }
+  ]
+}
+```
+
+### 节点类型
+
+| type | 说明 | 必要字段 | 界面行为 |
+|------|------|---------|---------|
+| `narrative` | 纯叙事 | `nextNodeId` | 显示"【继续】"按钮 |
+| `choice` | 玩家选择（含战斗） | `choices[]` | 生成选项按钮 |
+| `ending` | 终止节点 | `isVictory` 或 `isDefeat` | 胜利→进入下一章/返回主页；失败→返回主页 |
+
+### Choice 字段速查
+
+| 字段 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| `text` | string | ✅ | 按钮显示文字 |
+| `nextNodeId` | string | 非战斗时必填 | 跳转目标节点 ID |
+| `hpDelta` | int | 否 | 生命变化（正数恢复，负数受伤） |
+| `moraleDelta` | int | 否 | 士气变化 |
+| `requiredFlags` | string[] | 否 | 需拥有这些标志才能看到此选项 |
+| `grantedFlags` | string[] | 否 | 选择后设置的标志 |
+| `classRestricted` | bool | 否 | 是否职业限制 |
+| `allowedClasses` | string[] | classRestricted=true 时必填 | 允许的职业 ID 列表 |
+| `isCombat` | bool | 否 | 是否战斗选项 |
+| `combatThreshold` | int | isCombat=true 时必填 | 骰子成功阈值 [1, 100] |
+| `bonusClasses` | string[] | 否 | 这些职业掷骰 +20 |
+| `successNodeId` | string | isCombat=true 时必填 | 战斗成功跳转 |
+| `failureNodeId` | string | isCombat=true 时必填 | 战斗失败跳转 |
+| `failHpDelta` | int | 否 | 战斗失败生命损失（默认 -20） |
+| `failMoraleDelta` | int | 否 | 战斗失败士气损失（默认 -15） |
+
+### 校验规则
+
+引擎加载 DLC 时自动执行以下检查，不通过则 DLC 灰显不可选：
+
+1. `manifest.json` 必须存在且为合法 JSON
+2. `dlcId` 不能为空
+3. `title` 不能为空
+4. `classes[]` 至少 1 个职业
+5. `chapters[]` 至少 1 个章节
+6. 所有 class `id` 唯一
+7. 所有 chapter `id` 唯一
+8. 每个章节的 `file` 指向的 JSON 文件必须存在
+9. `startChapter` 必须对应一个已定义的章节
+10. 非起始章节的 `unlock` 必须引用已定义的章节（或 `"start"`）
+11. 所有节点的跳转目标 ID 必须存在（`nextNodeId` / `successNodeId` / `failureNodeId`）
+
+### 创作建议
+
+- **从官方 DLC 复制改**：打开 `dlc/third_reich/` 目录，复制 `manifest.json` 和一个 chapter JSON 作为模板，改字段值即可
+- **节点 ID 用前缀**：如 `ch01_intro`、`ch01_battle`，避免跨章节 ID 冲突
+- **先写大纲再填文本**：先用几个简单节点跑通章节流程（start → choice → ending），再逐步填充叙事文本
+- **战斗阈值参考**：简单战斗 40-50，普通战斗 50-60，困难战斗 60-70，绝境 70+
+- **标志命名**：使用描述性名称如 `saved_village`、`chose_dark_path`，便于记忆和复用
+- **测试**：写完丢进 `dlc/` 目录启动游戏即可测试，无需重新编译
 
 ---
 
 ## UI 界面
 
-### 主菜单 (MenuWidget)
+### 主菜单
 
-**文件：** `ui/MenuWidget.h`, `ui/MenuWidget.cpp`
+- 标题 + 副标题 + 三个按钮（开始征程 / 继续征程 / 退出征程）
+- 点击"开始征程" → 进入 DLC 选择列表
+- 点击"继续征程" → 打开存档读取对话框
 
-- 大标题 "钢铁意志：第三帝国的黄昏"
-- 反战副标题 "—— 一部关于战争残酷与无义的文字悲剧"
-- 底部标语 "战死沙场者唯有无尽长眠，惟有死者方能见证战争之终结。"
-- 三个按钮：开始新的战役 / 继续旧的战役 / 退出战役
-- 通过 Qt 信号 `newGameClicked` / `loadGameClicked` / `exitGameClicked` 与 MainWindow 通信
+### DLC 选择
 
-### 角色创建 (CharacterCreateWidget)
+- 自动列出 `dlc/` 下所有已安装的 DLC
+- 显示 DLC 标题、副标题、作者
+- 校验失败的 DLC 灰显，悬停显示错误详情
+- 点击有效 DLC → 进入角色创建
 
-**文件：** `ui/CharacterCreateWidget.h`, `ui/CharacterCreateWidget.cpp`
+### 角色创建
 
-- **姓名输入：** QLineEdit，最大 15 字符，默认名 "汉斯 · 缪勒"
-- **职业选择：** 2×3 网格卡片布局，6 个半透明 QPushButton 覆盖层触发选择
-- **右侧预览面板：**
-  - 初始生命/士气值显示
-  - 初战方向提示
-  - 详细的兵种特征描述文案
-- **选择高亮：** 通过动态属性 `selected="true"` + QSS 伪类实现视觉反馈
-- **表单验证：** 姓名为空时弹出警告，阻止开始游戏
+- 姓名输入（默认 "汉斯 · 缪勒"）
+- **动态职业卡片**：根据 DLC manifest 的 `classes[]` 自动生成，2 列网格布局
+- 右侧预览面板：生命/士气值 + 职业描述
+- 点击卡片高亮选中 → 点击"投身战场"开始游戏
 
-### 游戏主界面 (GameWidget)
-
-**文件：** `ui/GameWidget.h`, `ui/GameWidget.cpp`
-
-#### 布局结构
+### 游戏主界面
 
 ```
 ┌──────────────────────────────────────────────────┐
-│  顶部状态栏 (gameHeader)                         │
+│  顶部状态栏                                       │
 │  ┌──────────┬──────────────────┬────────────────┐│
-│  │ 军官姓名  │  生命: ████░░    │  黄色方案      ││
-│  │ 兵种      │  士气: ██████   │  阿登森林      ││
+│  │ 军官姓名  │  生命: ████░░    │  章节名称      ││
+│  │ 兵种      │  士气: ██████   │  当前地点      ││
 │  └──────────┴──────────────────┴────────────────┘│
 │                                                  │
 │  ┌──────────────────────────────────────────────┐│
-│  │                                              ││
-│  │         中央文本叙事区 (QTextBrowser)          ││
-│  │         打字机逐字打印 + 滚动                  ││
-│  │                                              ││
+│  │           中央文本叙事区（打字机效果）         ││
 │  └──────────────────────────────────────────────┘│
 │                                                  │
 │  ┌───────────────────────────┬──────────────────┐│
-│  │  选项按钮区               │  保存战役         ││
-│  │  [选项1: 强攻]           │  载入战役         ││
-│  │  [选项2: 迂回]           │  撤回后方         ││
+│  │  选项按钮区               │  保存 / 载入     ││
+│  │  [选项1] [选项2]         │  撤回后方        ││
 │  └───────────────────────────┴──────────────────┘│
 └──────────────────────────────────────────────────┘
 ```
 
-#### 按钮样式区分
+### 存档对话框
 
-- **普通选项：** `choiceOptionBtn` — 暗色边框，左侧文字对齐
-- **战斗选项：** `combatOptionBtn` — 红色调边框，红色文字，加粗
-- **控制按钮：** `gameCtrlBtn` — 小字体，右侧栏排列
-
-#### 选项过滤逻辑
-
-在 `showStoryNode()` 中，根据当前玩家职业动态过滤选项：
-- 职业受限且玩家不匹配 → 跳过不生成按钮
-- `choiceIndex` 属性与实际生成顺序对应，而非节点原始索引
-
-### 存档对话框 (SaveLoadDialog)
-
-**文件：** `ui/SaveLoadDialog.h`, `ui/SaveLoadDialog.cpp`
-
-- **双模式：** `savingMode = true` 为保存模式，`false` 为读取模式
-- **4 个槽位卡片：** Slot 0 自动存档 + Slot 1-3 手动存档
-- **视觉状态：**
-  - 空槽位 — 灰色文字 "战区通讯中断"
-  - 有数据 — 显示玩家姓名、兵种、战役名、时间戳
-  - 选中 — 红色边框高亮
-- **防呆设计：**
-  - 保存模式：自动存档位灰色禁用
-  - 读取模式：空槽位灰色禁用
-  - 删除按钮：仅非自动存档且有数据的槽位可用
-- **检查操作数据：** 通过 `m_player` 指针（保存模式）写入当前玩家状态；读取模式通过 `gameLoaded` 信号回传
-
-### 主窗口 (MainWindow)
-
-**文件：** `ui/MainWindow.h`, `ui/MainWindow.cpp`
-
-#### 核心职责
-
-作为所有子部件的容器和信号路由中心：
-
-```
-MainWindow
-  ├── QStackedWidget (页面容器)
-  │   ├── [0] MenuWidget           — 主菜单
-  │   ├── [1] CharacterCreateWidget — 角色创建
-  │   └── [2] GameWidget           — 游戏主界面
-  ├── GameEngine   — 游戏逻辑引擎
-  ├── SaveManager  — 存档管理器
-  └── MusicPlayer  — 音乐播放器
-```
-
-#### 信号路由表
-
-| 发送方 | 信号 | MainWindow 处理 | 转发至 |
-|--------|------|----------------|--------|
-| MenuWidget | `newGameClicked` | `showCharacterCreate()` | CharacterCreateWidget |
-| MenuWidget | `loadGameClicked` | `openLoadDialog()` | SaveLoadDialog |
-| CharacterCreateWidget | `startGame` | `onStartGame()` → `engine->newGame()` + `startScenario()` | GameWidget |
-| GameWidget | `choiceMade(index)` | `onChoiceMade()` | GameEngine |
-| GameWidget | `saveClicked` | `openSaveDialog()` | SaveLoadDialog |
-| GameWidget | `loadClicked` | `openLoadDialog()` | SaveLoadDialog |
-| GameWidget | `exitClicked` | `showMainMenu()` | MenuWidget + 音乐切换 |
-| GameEngine | `nodeChanged` | `onNodeChanged()` → 刷新界面 + 自动存档 | GameWidget |
-| GameEngine | `statsChanged` | `onStatsChanged()` | GameWidget |
-| GameEngine | `combatResult` | `onCombatResult()` → QMessageBox | 无 |
-| GameEngine | `scenarioVictory` | `onScenarioVictory()` → 提示 + 存档 | 无 |
-| GameEngine | `scenarioDefeat` | `onScenarioDefeat()` → 音乐切换 | MusicPlayer |
-
-#### 战役间跳转逻辑
-
-当玩家在非柏林战役中获胜时：
-1. `Ending` 节点显示"【进入下一战役】"按钮
-2. 点击触发 `choiceMade(-2)`
-3. `MainWindow::onChoiceMade` 检测到 `-2`，计算 `currentScenario + 1` 作为下一个场景
-4. 调用 `engine->startScenario(nextScen)` 进入下一战役
-5. 柏林战役（最终章）的结束按钮直接返回主菜单
-
----
-
-## 场景详情
-
-### 黄色方案 (FallGelb)
-
-**历史背景：** 1940 年 5-6 月，德国通过阿登森林突破法国防线，六周内迫使法国投降。
-
-| 项目 | 详情 |
-|------|------|
-| **职业** | 步兵、坦克兵 |
-| **节点数** | 28 个节点 |
-| **通关路径** | 阿登行军 → 比利时村庄 → 马斯河渡口 → 法国色当 → 难民公路 → 敦刻尔克停止令 → 法国陷落 |
-| **关键道德选择** | ① 村庄是否骚扰平民 ② 是否驱散法国难民 ③ 是否质疑敦刻尔克停止令 ④ 巴黎胜利后庆祝或独处反思 |
-| **胜利结局** | 1 个（黄色方案完成 — 六周征服法国） |
-| **失败结局** | 1 个（阵亡于法国农村） |
-| **节点数** | 28 |
-
-### 不列颠空战 (Britain)
-
-**历史背景：** 1940 年 7-10 月，德国空军试图夺取英吉利海峡制空权，为入侵英国做准备但最终失败。
-
-| 项目 | 详情 |
-|------|------|
-| **职业** | 战斗机飞行员、轰炸机飞行员 |
-| **节点数** | 27 个节点 |
-| **分支起点** | 战斗机/轰炸机各有独立的简报节点 |
-| **关键道德选择** | ① 是否在不确定目标时依然投弹轰炸 ② 是否质疑轰炸伦敦平民的命令 ③ 燃油危机中的策略权衡 ④ RAF 大反攻中战斗或撤退 |
-| **特殊节点** | 被击落 → 英国战俘营 → 换俘归队 |
-| **胜利结局** | 2 个（生存 / 生存与反思） |
-| **失败结局** | 1 个（坠机阵亡） |
-| **节点数** | 27 |
-
-### 群狼海战 (WolfPack)
-
-**历史背景：** 1941-1943 年，大西洋潜艇战的高峰与衰退——德国 U 艇部队从"快乐时代"走向 75% 阵亡率的惨败。
-
-| 项目 | 详情 |
-|------|------|
-| **职业** | 潜艇驾驶员、战列舰水兵 |
-| **分支起点** | 潜艇简报（U-96）或战列舰简报（俾斯麦号） |
-| **关键道德选择** | ① 是否救助商船幸存者（违反邓尼茨命令） ② 深水炸弹攻击下的生存策略 ③ 最终反思时诚实还是沉默 |
-| **俾斯麦号线** | 击沉胡德号 → 被围猎 → 沉没/获救 |
-| **胜利结局** | 2 个（诚实面对战争 vs 沉默） |
-| **失败结局** | 1 个（葬身大西洋） |
-
-### 斯大林格勒战役 (Stalingrad)
-
-**历史背景：** 1942-1943 年，人类史上最惨烈的城市巷战，第六集团军被苏军包围合围并最终投降。
-
-| 项目 | 详情 |
-|------|------|
-| **职业** | 步兵、坦克兵 |
-| **节点数** | 27 个节点 |
-| **关键选择** | ① 废墟巷战中的正面突击 vs 下水道迂回 ② 拖拉机厂攻防：强攻/炮火覆盖/迂回绕过 ③ 冬季饥饿：搜寻食物 vs 分享口粮 ④ 被包围后：突围 vs 等待解救 ⑤ 最后抉择：投降 vs 死战到底 |
-| **胜利结局** | 2 个（放下武器投降 / 打完最后一颗子弹后被俘） |
-| **失败结局** | 1 个（阵亡于废墟） |
-
-### 柏林战役 (Berlin)
-
-**历史背景：** 1945 年 4 月，苏联红军发起对柏林的最后攻势，德国无条件投降前夜的末日图景。
-
-| 项目 | 详情 |
-|------|------|
-| **职业** | 全部六种职业可参与 |
-| **分支起点** | 职业分配：步兵/坦克 → 奥德河防线、飞行兵 → 防空塔、海军 → 施普雷河防线 |
-| **关键选择** | ① 不同职业的前线战斗 ② 遇到少年兵——劝其回家 / 命令坚守 / 视而不见 ③ 元首自杀后的最终抉择：向东投降 / 向西突围 / 隐蔽等待 |
-| **胜利结局** | 3 个（向东投降、向西突围、隐蔽等待 → 全部存活） |
-| **失败结局** | 1 个（突围失败阵亡） |
-| **最终行为** | 柏林结局不显示"下一战役"按钮，而是"返回主页 — 铭记历史" |
+- 4 个槽位（Slot 0 自动存档 + Slot 1-3 手动存档）
+- 显示 DLC 名称、玩家姓名、职业、章节、时间戳
+- 空槽位显示"无存档数据"
+- 自动存档位在保存模式下不可选
 
 ---
 
 ## 美术风格
 
-### 主题：军工战损风（Industrial War-Worn）
+**军工战损风（Industrial War-Worn）** — `resources/style.qss`
 
-**文件：** `resources/style.qss`
-
-全局采用**暗黑色系 + 暗红强调色**，模拟二战时期军工设施、战损金属的视觉质感：
-
-- **背景色：** `#121212`（近乎纯黑，模拟暗夜或地下掩体）
-- **前景文字：** `#e2e2e2`（灰白，模拟褪色军服）
-- **强调色：** `#aa3333` / `#ff3333`（暗红，模拟血、铁锈、战火）
-- **信息色：** `#ff9900`（橙色，用于关键信息标注）
-- **HP 进度条：** `#992222`（血红）
-- **士气进度条：** `#226699`（冷蓝，暗示心理状态）
-- **战斗选项按钮：** 红色调背景 + 红色文字，视觉区分风险行动
-
-### 设计原则
-
-- **无圆角：** 所有 `border-radius: 0px`，体现军事工业的冷硬直线
-- **暗色层次：** 通过 `#121212` → `#181818` → `#1c1c1c` → `#242424` 四层灰色建立纵深
-- **等宽/工业字体：** font-family 末尾回退到 `monospace`，营造电报/打字机感
-- **仅需 QSS：** 无外部图片依赖，纯文本 + 样式表实现所有视觉效果
+- 暗黑色系 `#121212` 背景 + 灰白 `#e2e2e2` 文字
+- 暗红强调色 `#aa3333`（血/铁锈/战火）
+- HP 条血红 `#992222` / 士气条冷蓝 `#226699`
+- 战斗选项按钮红色调区分
+- 无圆角，军工冷硬直线
+- 等宽/工业字体回退
 
 ---
 
-## 数据流与生命周期
+## 存档格式
 
-### 完整游戏流程
-
-```
-启动应用
-    │
-    ├─ main.cpp 创建 QApplication，加载 style.qss
-    │
-    ├─ MainWindow 构造
-    │   ├─ 创建 GameEngine、SaveManager、MusicPlayer
-    │   ├─ 构建 UI 页面栈（Menu → Create → Game）
-    │   ├─ 连接所有信号槽
-    │   ├─ 注册音乐轨道
-    │   └─ 播放主菜单主题曲
-    │
-    ▼ 【主菜单】
-    │
-    ├─ "开始新的战役" → 角色创建页面
-    │   ├─ 选择姓名 + 职业
-    │   └─ 开始游戏 → GameEngine::newGame + startScenario
-    │       ├─ 显示首个故事节点
-    │       ├─ 打字机逐字播放文本
-    │       └─ 等待玩家选择
-    │
-    ├─ "继续旧的战役" → 存档对话框（读取模式）
-    │   ├─ 选择有数据的槽位
-    │   └─ 加载 → GameEngine::loadGame → 导航到保存时的节点
-    │
-    ▼ 【游戏循环】
-    │
-    玩家点击选项
-    │   ├─ 普通选项 → applyChoice → navigateTo → 下一个节点
-    │   └─ 战斗选项 → rollDice 判定
-    │       ├─ 成功 → applyChoice → navigateTo(成功节点)
-    │       └─ 失败 → HP/士气下降 → dead? → 失败节点 : 失败跳转节点
-    │
-    每次节点切换：
-    ├─ 刷新 UI（文本、选项、HP/士气条）
-    ├─ 切换音乐（如果节点指定了 musicKey）
-    └─ 自动存档 → SaveManager::autoSave
-    │
-    ▼ 【结束状态】
-    │
-    ├─ 胜利（非柏林） → "进入下一战役" → 下一个场景
-    ├─ 胜利（柏林）   → "返回主页" → 主菜单
-    └─ 失败           → "返回主页" → 主菜单
+```json
+{
+  "engineVersion": "2.0",
+  "slot": 1,
+  "timestamp": "2026-06-15 12:00:00",
+  "dlcTitle": "钢铁意志：第三帝国的黄昏",
+  "className": "步兵",
+  "chapterName": "黄色方案",
+  "player": {
+    "engineVersion": "2.0",
+    "dlcId": "third_reich",
+    "playerName": "汉斯 · 缪勒",
+    "playerClass": "infantry",
+    "hp": 85,
+    "maxHp": 100,
+    "morale": 90,
+    "maxMorale": 100,
+    "currentChapter": "fall_gelb",
+    "currentNodeId": "fg_village",
+    "flags": ["spared_village"],
+    "unlockedChapters": ["fall_gelb", "britain"]
+  }
+}
 ```
 
-### 内存管理
-
-- 所有 Qt 对象使用**父子所有权树**——`MainWindow` 是根，析构时自动释放所有子对象
-- 场景对象使用 `std::unique_ptr<ScenarioBase>` 管理，所有权归 `GameEngine::m_scenarios`
-- `SaveLoadDialog` 在栈上创建，`exec()` 模态阻塞，离开作用域自动析构
+存档按 `dlcId` 区分，读取时自动校验对应 DLC 是否已安装。
 
 ---
 
@@ -765,27 +616,26 @@ MainWindow
 
 ### 当前局限
 
-1. **无国际化（i18n）：** 所有文本硬编码为中文，没有英文或其他语言版本
-2. **音乐文件需手动准备：** 由于版权原因，`resources/music/` 目录下的 .mp3 文件未随源码分发
-3. **窗口固定大小：** 最小 850×650，默认 960×700，未做响应式缩放
-4. **UI 透明按钮覆盖层：** 角色创建和存档对话框中使用硬编码尺寸的透明 QPushButton 做卡片点击，窗口缩放时可能偏移
-5. **无成就/统计系统：** 玩家的道德选择虽然留下标志，但没有统一的后续影响或成就解锁
-6. **战斗选项的标志检查缺少 UI 反馈：** 如果玩家不满足前置标志或职业限制，选项会静默隐藏，不告知为什么不可选
+1. **章节推进仅支持线性解锁**：完成章节 N → 解锁 N+1，暂不支持 JSON 定义分支跳转关系
+2. **无国际化**：所有 UI 文本为中文
+3. **窗口固定尺寸**：最小 850×650，未做响应式缩放
+4. **音乐需自行准备**：DLC 的 `music/` 目录下 mp3 文件需手动放入，缺失时静默跳过
+5. **无可视化编辑器**：纯手写 JSON，需要对照本文档编写
+6. **成就/统计系统未实现**
 
-### 可能的改进方向
+### 未来方向
 
-- 添加英文翻译支持（使用 Qt Linguist 的 `.ts` 文件）
-- 为音乐文件提供 `placeholder` 或静默模式
-- 实现成就面板与进度统计
-- 添加跳过已读文本的快速模式
-- 允许自定义窗口缩放与全屏模式
-- 扩展场景分支深度，让叙事标志更显著地影响后续剧情
+- 章节间支持任意分支跳转（已在数据模型中预留）
+- DLC 压缩包 (.zip) 加载支持
+- DLC 自定义 UI 皮肤/主题
+- 可配置的游戏规则参数（骰子公式、HP 系统开关等）
+- Steam Workshop 集成
 
 ---
 
 ## 致谢
 
-本作受以下作品启发：
+本引擎的官方 DLC 受以下作品启发：
 - 战史著作《第三帝国的兴亡》《斯大林格勒》《大西洋战役》
 - 德剧《我们的父辈》(Unsere Mütter, unsere Väter)
 - 电影《从海底出击》(Das Boot)、《帝国的毁灭》(Der Untergang)
