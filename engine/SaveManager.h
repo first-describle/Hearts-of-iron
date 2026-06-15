@@ -2,25 +2,20 @@
 #include <QObject>
 #include <QString>
 #include <QList>
-#include "Player.h"
+#include "PlayerSystem.h"
 
-// ============================================================
-//  存档信息摘要（用于存档列表显示）
-// ============================================================
 struct SaveInfo {
     int     slot        = -1;
     bool    isAutoSave  = false;
+    QString dlcId;
+    QString dlcTitle;
     QString playerName;
     QString className;
-    QString scenarioName;
+    QString chapterName;
     QString timestamp;
     bool    valid       = false;
 };
 
-// ============================================================
-//  SaveManager — 存档管理
-//  slot 0 = 自动存档，slot 1-3 = 手动存档
-// ============================================================
 class SaveManager : public QObject {
     Q_OBJECT
 public:
@@ -29,18 +24,18 @@ public:
     static const int AUTO_SLOT    = 0;
     static const int MAX_MANUAL   = 3;
 
-    // 保存
-    bool saveGame(int slot, const Player &player);
-    bool autoSave(const Player &player);
+    bool saveGame(int slot, const PlayerSystem &player,
+                  const QString &dlcTitle = {},
+                  const QString &className = {},
+                  const QString &chapterName = {});
+    bool autoSave(const PlayerSystem &player,
+                  const QString &dlcTitle = {},
+                  const QString &className = {},
+                  const QString &chapterName = {});
 
-    // 读取
-    bool   loadGame(int slot, Player &outPlayer);
-
-    // 列出所有存档
+    bool   loadGame(int slot, PlayerSystem &outPlayer);
     QList<SaveInfo> listSaves() const;
     SaveInfo        slotInfo(int slot) const;
-
-    // 删除
     bool deleteSlot(int slot);
 
 private:

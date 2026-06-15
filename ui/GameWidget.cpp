@@ -46,7 +46,7 @@ void GameWidget::setupUi() {
     playerInfoLayout->setSpacing(2);
     m_nameLabel = new QLabel(QStringLiteral("军官: 汉斯 · 缪勒"), header);
     m_nameLabel->setObjectName(QStringLiteral("headerNameLabel"));
-    
+
     m_classLabel = new QLabel(QStringLiteral("兵种: 步兵"), header);
     m_classLabel->setObjectName(QStringLiteral("headerClassLabel"));
 
@@ -90,7 +90,7 @@ void GameWidget::setupUi() {
     QVBoxLayout *scenLayout = new QVBoxLayout();
     scenLayout->setSpacing(2);
     scenLayout->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
-    
+
     m_scenarioLabel = new QLabel(QStringLiteral("黄色方案"), header);
     m_scenarioLabel->setObjectName(QStringLiteral("headerScenarioLabel"));
     m_scenarioLabel->setAlignment(Qt::AlignRight);
@@ -170,17 +170,18 @@ void GameWidget::updatePlayerInfo(const QString &name, const QString &className)
     m_classLabel->setText(QStringLiteral("兵种: %1").arg(className));
 }
 
-void GameWidget::showStoryNode(const StoryNode *node, PlayerClass playerClass, ScenarioId scenarioId) {
+void GameWidget::showStoryNode(const StoryNode *node, const QString &playerClassId,
+                                const QString &chapterName, bool isLastChapter) {
     if (!node) return;
 
     m_typeTimer->stop();
 
     // 更新场景信息
     m_locationLabel->setText(node->locationTitle);
-    m_scenarioLabel->setText(scenarioName(scenarioId));
+    m_scenarioLabel->setText(chapterName);
 
     // 获取当前职业的文本（有些节点有职业特定覆盖）
-    m_fullText = node->textFor(playerClass);
+    m_fullText = node->textFor(playerClassId);
     m_currentIndex = 0;
     m_isTyping = true;
     m_textBrowser->clear();
@@ -203,7 +204,7 @@ void GameWidget::showStoryNode(const StoryNode *node, PlayerClass playerClass, S
     int choiceIdx = 0;
     for (const Choice &choice : node->choices) {
         // 职业限制检查
-        if (choice.classRestricted && !choice.allowedClasses.contains(playerClass)) {
+        if (choice.classRestricted && !choice.allowedClasses.contains(playerClassId)) {
             continue; // 直接不生成不可选兵种的按钮
         }
 
@@ -221,7 +222,7 @@ void GameWidget::showStoryNode(const StoryNode *node, PlayerClass playerClass, S
         choiceIdx++;
     }
 
-    // 只有在 NodeType::Narrative 时，提供一个“【继续】”的按钮
+    // 只有在 NodeType::Narrative 时，提供一个"【继续】"的按钮
     if (node->type == NodeType::Narrative) {
         QPushButton *btn = new QPushButton(QStringLiteral("【继续】"), m_optionsContainer);
         btn->setObjectName(QStringLiteral("choiceOptionBtn"));
@@ -244,7 +245,7 @@ void GameWidget::showStoryNode(const StoryNode *node, PlayerClass playerClass, S
         btn->setVisible(false);
 
         if (node->isVictory) {
-            if (scenarioId == ScenarioId::Berlin) {
+            if (isLastChapter) {
                 btn->setText(QStringLiteral("【返回主页 — 铭记历史】"));
                 connect(btn, &QPushButton::clicked, this, &GameWidget::exitClicked);
             } else {
@@ -289,7 +290,7 @@ void GameWidget::skipTypewriter() {
 void GameWidget::displayFullText() {
     m_typeTimer->stop();
     m_isTyping = false;
-    
+
     // 渲染全部文本（保证排版）
     m_textBrowser->setPlainText(m_fullText);
     m_textBrowser->verticalScrollBar()->setValue(m_textBrowser->verticalScrollBar()->maximum());

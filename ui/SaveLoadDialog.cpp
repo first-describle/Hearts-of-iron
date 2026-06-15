@@ -7,19 +7,27 @@
 #include <QMessageBox>
 #include <QStyle>
 #include <QDateTime>
+#include <QMouseEvent>
 
-SaveLoadDialog::SaveLoadDialog(bool savingMode, SaveManager *saveManager, Player *player, QWidget *parent)
+SaveLoadDialog::SaveLoadDialog(bool savingMode, SaveManager *saveManager, PlayerSystem *player, QWidget *parent)
     : QDialog(parent), m_savingMode(savingMode), m_saveManager(saveManager), m_player(player)
 {
     setupUi();
     refreshSlots();
 }
 
+void SaveLoadDialog::setDlcInfo(const QString &dlcTitle, const QString &className,
+                                 const QString &chapterName) {
+    m_dlcTitle = dlcTitle;
+    m_className = className;
+    m_chapterName = chapterName;
+}
+
 void SaveLoadDialog::setupUi() {
     setWindowTitle(m_savingMode ? QStringLiteral("保存战役") : QStringLiteral("继续战役"));
     setMinimumSize(480, 520);
     resize(500, 560);
-    
+
     // 强制使用无边框窗口或者保持原生对话框样式，通过样式表定制
     setObjectName(QStringLiteral("SaveLoadDialog"));
 
@@ -52,10 +60,10 @@ void SaveLoadDialog::setupUi() {
 
         QLabel *sTitle = new QLabel(card);
         sTitle->setObjectName(QStringLiteral("slotTitle"));
-        
+
         QLabel *sInfo = new QLabel(card);
         sInfo->setObjectName(QStringLiteral("slotInfo"));
-        
+
         QLabel *sTime = new QLabel(card);
         sTime->setObjectName(QStringLiteral("slotTime"));
 
@@ -138,22 +146,22 @@ void SaveLoadDialog::refreshSlots() {
         ui.titleLabel->setText(titleText);
 
         if (info.valid) {
-            ui.infoLabel->setText(QStringLiteral("军官: %1 | 兵种: %2 | 战役: %3")
-                                  .arg(info.playerName, info.className, info.scenarioName));
+            ui.infoLabel->setText(QStringLiteral("DLC: %1 | 军官: %2 | 兵种: %3 | 章节: %4")
+                                  .arg(info.dlcTitle, info.playerName, info.className, info.chapterName));
             ui.timeLabel->setText(QStringLiteral("记录时间: %1").arg(info.timestamp));
             ui.card->setProperty("empty", false);
         } else {
             ui.infoLabel->setText(QStringLiteral("战区通讯中断 — 无存档数据"));
             ui.timeLabel->setText(QStringLiteral("-"));
             ui.card->setProperty("empty", true);
-            
+
             // 如果是读取模式，无数据的槽位不可选择
             if (!m_savingMode) {
                 m_buttonGroup->button(i)->setEnabled(false);
                 ui.card->setEnabled(false);
             }
         }
-        
+
         // 刷新 QSS
         ui.card->style()->unpolish(ui.card);
         ui.card->style()->polish(ui.card);
@@ -177,7 +185,7 @@ void SaveLoadDialog::onSlotSelected(int id) {
 
     // 只有非自动存档，且该槽位有数据，才可删除
     m_deleteBtn->setEnabled(id != SaveManager::AUTO_SLOT && slotHasData);
-    
+
     // 如果是保存模式：非自动存档位即可保存
     // 如果是读取模式：被选中的槽位本身有数据才可读取
     if (m_savingMode) {
@@ -192,7 +200,7 @@ void SaveLoadDialog::onActionTriggered() {
 
     if (m_savingMode) {
         // 保存逻辑
-        if (m_saveManager->saveGame(m_selectedSlot, *m_player)) {
+        if (m_saveManager->saveGame(m_selectedSlot, *m_player, m_dlcTitle, m_className, m_chapterName)) {
             QMessageBox::information(this, QStringLiteral("存档成功"), QStringLiteral("战役记录已成功保存。"));
             accept();
         } else {
@@ -200,7 +208,7 @@ void SaveLoadDialog::onActionTriggered() {
         }
     } else {
         // 读取逻辑
-        Player loadedPlayer;
+        PlayerSystem loadedPlayer;
         if (m_saveManager->loadGame(m_selectedSlot, loadedPlayer)) {
             emit gameLoaded(loadedPlayer);
             accept();
@@ -221,12 +229,16 @@ void SaveLoadDialog::onDeleteTriggered() {
         m_selectedSlot = -1;
         m_deleteBtn->setEnabled(false);
         m_actionBtn->setEnabled(false);
-        
+
         // 重置选中属性
         for (int i = 0; i < 4; ++i) {
             m_slotsUI[i].card->setProperty("selected", false);
         }
-        
+
         refreshSlots();
     }
+}
+
+bool SaveLoadDialog::eventFilter(QObject *obj, QEvent *event) {
+    return QDialog::eventFilter(obj, event);
 }

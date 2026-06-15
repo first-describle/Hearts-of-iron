@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(HeartsOfIronGame VERSION 1.0.0 LANGUAGES CXX)
+project(HeartsOfIronGame VERSION 2.0.0 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -11,16 +11,12 @@ find_package(Qt6 REQUIRED COMPONENTS Core Widgets Multimedia)
 
 set(SOURCES
     main.cpp
-    core/Player.cpp
-    core/GameEngine.cpp
-    core/SaveManager.cpp
-    core/MusicPlayer.cpp
-    core/ScenarioBase.cpp
-    scenarios/FallGelbScenario.cpp
-    scenarios/BritainScenario.cpp
-    scenarios/WolfPackScenario.cpp
-    scenarios/StalingradScenario.cpp
-    scenarios/BerlinScenario.cpp
+    engine/PlayerSystem.cpp
+    engine/DiceSystem.cpp
+    engine/DlcManager.cpp
+    engine/NodeEngine.cpp
+    engine/SaveManager.cpp
+    engine/MusicPlayer.cpp
     ui/MainWindow.cpp
     ui/MenuWidget.cpp
     ui/GameWidget.cpp
@@ -29,18 +25,13 @@ set(SOURCES
 )
 
 set(HEADERS
-    core/GameState.h
-    core/StoryNode.h
-    core/Player.h
-    core/GameEngine.h
-    core/SaveManager.h
-    core/MusicPlayer.h
-    core/ScenarioBase.h
-    scenarios/FallGelbScenario.h
-    scenarios/BritainScenario.h
-    scenarios/WolfPackScenario.h
-    scenarios/StalingradScenario.h
-    scenarios/BerlinScenario.h
+    engine/DlcTypes.h
+    engine/PlayerSystem.h
+    engine/DiceSystem.h
+    engine/DlcManager.h
+    engine/NodeEngine.h
+    engine/SaveManager.h
+    engine/MusicPlayer.h
     ui/MainWindow.h
     ui/MenuWidget.h
     ui/GameWidget.h
@@ -64,12 +55,12 @@ target_include_directories(HeartsOfIronGame PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
-# Copy music directory to build folder if it exists
-if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/resources/music")
+# Copy dlc directory to build folder
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/dlc")
     add_custom_command(TARGET HeartsOfIronGame POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_directory
-        "${CMAKE_CURRENT_SOURCE_DIR}/resources/music"
-        "$<TARGET_FILE_DIR:HeartsOfIronGame>/music"
+        "${CMAKE_CURRENT_SOURCE_DIR}/dlc"
+        "$<TARGET_FILE_DIR:HeartsOfIronGame>/dlc"
     )
 endif()
 
