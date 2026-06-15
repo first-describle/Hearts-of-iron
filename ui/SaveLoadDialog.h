@@ -1,7 +1,7 @@
 #pragma once
 #include <QDialog>
 #include <QList>
-#include "../core/SaveManager.h"
+#include "../engine/SaveManager.h"
 
 class QPushButton;
 class QLabel;
@@ -11,11 +11,17 @@ class SaveLoadDialog : public QDialog {
     Q_OBJECT
 public:
     // savingMode: true = 保存模式, false = 读取模式
-    SaveLoadDialog(bool savingMode, SaveManager *saveManager, Player *player, QWidget *parent = nullptr);
+    SaveLoadDialog(bool savingMode, SaveManager *saveManager, PlayerSystem *player, QWidget *parent = nullptr);
     ~SaveLoadDialog() = default;
 
+    void setDlcInfo(const QString &dlcTitle, const QString &className,
+                    const QString &chapterName);
+
 signals:
-    void gameLoaded(const Player &loadedPlayer);
+    void gameLoaded(const PlayerSystem &loadedPlayer);
+
+protected:
+    bool eventFilter(QObject *obj, QEvent *event) override;
 
 private slots:
     void onSlotSelected(int id);
@@ -28,7 +34,7 @@ private:
 
     bool m_savingMode;
     SaveManager *m_saveManager;
-    Player *m_player; // 用于在保存模式下读取当前玩家状态以写入存档
+    PlayerSystem *m_player;
 
     QButtonGroup *m_buttonGroup = nullptr;
     QPushButton *m_actionBtn = nullptr;
@@ -36,6 +42,10 @@ private:
     QPushButton *m_cancelBtn = nullptr;
 
     int m_selectedSlot = -1;
+
+    QString m_dlcTitle;
+    QString m_className;
+    QString m_chapterName;
 
     struct SlotUI {
         QWidget *card = nullptr;

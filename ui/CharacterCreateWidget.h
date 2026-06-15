@@ -1,10 +1,11 @@
 #pragma once
 #include <QWidget>
-#include "../core/GameState.h"
+#include <QList>
+#include "../engine/DlcTypes.h"
 
 class QLineEdit;
 class QLabel;
-class QButtonGroup;
+class QGridLayout;
 class QPushButton;
 
 class CharacterCreateWidget : public QWidget {
@@ -13,9 +14,15 @@ public:
     explicit CharacterCreateWidget(QWidget *parent = nullptr);
     ~CharacterCreateWidget() = default;
 
+    // Set classes from DLC manifest (called before showing)
+    void setClasses(const QList<DlcClass> &classes);
+
 signals:
     void backToMenu();
-    void startGame(const QString &name, PlayerClass cls);
+    void startGame(const QString &name, const QString &classId);
+
+protected:
+    bool eventFilter(QObject *obj, QEvent *event) override;
 
 private slots:
     void onClassSelected(int id);
@@ -23,12 +30,14 @@ private slots:
 
 private:
     void setupUi();
-    void updatePreview(PlayerClass cls);
+    void updatePreview(const DlcClass &cls);
+    void rebuildClassCards();
 
     QLineEdit *m_nameEdit = nullptr;
-    QButtonGroup *m_classGroup = nullptr;
+    QGridLayout *m_grid = nullptr;
     QList<QWidget*> m_classCards;
-    
+    QList<DlcClass> m_classes;
+
     QLabel *m_hpLabel = nullptr;
     QLabel *m_moraleLabel = nullptr;
     QLabel *m_descLabel = nullptr;
@@ -37,5 +46,5 @@ private:
     QPushButton *m_startBtn = nullptr;
     QPushButton *m_backBtn = nullptr;
 
-    PlayerClass m_selectedClass = PlayerClass::Infantry;
+    int m_selectedIndex = 0;
 };

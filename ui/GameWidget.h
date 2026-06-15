@@ -1,7 +1,7 @@
 #pragma once
 #include <QWidget>
 #include <QList>
-#include "../core/StoryNode.h"
+#include "../engine/DlcTypes.h"
 
 class QTextBrowser;
 class QPushButton;
@@ -18,7 +18,8 @@ public:
 
     void updatePlayerStats(int hp, int morale);
     void updatePlayerInfo(const QString &name, const QString &className);
-    void showStoryNode(const StoryNode *node, PlayerClass playerClass, ScenarioId scenarioId);
+    void showStoryNode(const StoryNode *node, const QString &playerClassId,
+                       const QString &chapterName, bool isLastChapter);
 
 signals:
     void choiceMade(int index);
@@ -41,7 +42,7 @@ private:
     QTextBrowser *m_textBrowser = nullptr;
     QProgressBar *m_hpBar = nullptr;
     QProgressBar *m_moraleBar = nullptr;
-    
+
     QLabel *m_nameLabel = nullptr;
     QLabel *m_classLabel = nullptr;
     QLabel *m_locationLabel = nullptr;
@@ -55,7 +56,6 @@ private:
     QPushButton *m_loadBtn = nullptr;
     QPushButton *m_exitBtn = nullptr;
 
-    // Typewriter variables
     QString m_fullText;
     int m_currentIndex = 0;
     QTimer *m_typeTimer = nullptr;
