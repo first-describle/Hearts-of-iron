@@ -19,12 +19,18 @@ QString SaveManager::savePath(int slot) const {
     return saveDir() + QString("/save_%1.json").arg(slot);
 }
 
-bool SaveManager::saveGame(int slot, const Player &player) {
+bool SaveManager::saveGame(int slot, const PlayerSystem &player,
+                            const QString &dlcTitle,
+                            const QString &className,
+                            const QString &chapterName) {
     QJsonObject root;
-    root["slot"]      = slot;
-    root["autoSave"]  = (slot == AUTO_SLOT);
-    root["timestamp"] = QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss");
-    root["player"]    = player.toJson();
+    root["slot"]        = slot;
+    root["autoSave"]    = (slot == AUTO_SLOT);
+    root["timestamp"]   = QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss");
+    root["dlcTitle"]    = dlcTitle;
+    root["className"]   = className;
+    root["chapterName"] = chapterName;
+    root["player"]      = player.toJson();
 
     QJsonDocument doc(root);
     QFile file(savePath(slot));
@@ -34,11 +40,14 @@ bool SaveManager::saveGame(int slot, const Player &player) {
     return true;
 }
 
-bool SaveManager::autoSave(const Player &player) {
-    return saveGame(AUTO_SLOT, player);
+bool SaveManager::autoSave(const PlayerSystem &player,
+                            const QString &dlcTitle,
+                            const QString &className,
+                            const QString &chapterName) {
+    return saveGame(AUTO_SLOT, player, dlcTitle, className, chapterName);
 }
 
-bool SaveManager::loadGame(int slot, Player &outPlayer) {
+bool SaveManager::loadGame(int slot, PlayerSystem &outPlayer) {
     QFile file(savePath(slot));
     if (!file.open(QIODevice::ReadOnly)) return false;
 
@@ -73,11 +82,13 @@ SaveInfo SaveManager::slotInfo(int slot) const {
     QJsonObject root = doc.object();
     QJsonObject playerObj = root["player"].toObject();
 
-    info.valid        = true;
-    info.playerName   = playerObj["name"].toString();
-    info.className    = playerClassName(static_cast<PlayerClass>(playerObj["playerClass"].toInt()));
-    info.scenarioName = scenarioName(static_cast<ScenarioId>(playerObj["currentScenario"].toInt()));
-    info.timestamp    = root["timestamp"].toString();
+    info.valid       = true;
+    info.dlcId       = playerObj["dlcId"].toString();
+    info.dlcTitle    = root["dlcTitle"].toString();
+    info.playerName  = playerObj["playerName"].toString();
+    info.className   = root["className"].toString();
+    info.chapterName = root["chapterName"].toString();
+    info.timestamp   = root["timestamp"].toString();
     return info;
 }
 
