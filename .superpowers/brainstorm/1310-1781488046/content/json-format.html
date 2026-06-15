@@ -1,0 +1,146 @@
+<h2>第二节：JSON 数据格式设计</h2>
+<p class="subtitle">DLC创作者需要编写的两个核心文件：manifest.json + chapter/*.json</p>
+
+<h3>📄 manifest.json — DLC 元信息</h3>
+
+<div class="mockup">
+  <div class="mockup-header">dlc/third-reich/manifest.json</div>
+  <div class="mockup-body" style="text-align:left">
+<pre style="background:#111;color:#e6db74;padding:16px;border-radius:8px;font-size:12px;line-height:1.5;overflow-x:auto">
+{
+  <span style="color:#888">// ===== 基本信息 =====</span>
+  <span style="color:#f92672">"dlcId"</span>: <span style="color:#e6db74">"third_reich"</span>,
+  <span style="color:#f92672">"title"</span>: <span style="color:#e6db74">"钢铁意志：第三帝国的黄昏"</span>,
+  <span style="color:#f92672">"subtitle"</span>: <span style="color:#e6db74">"一部关于战争残酷与无义的文字悲剧"</span>,
+  <span style="color:#f92672">"author"</span>: <span style="color:#e6db74">"Official"</span>,
+  <span style="color:#f92672">"version"</span>: <span style="color:#e6db74">"1.0.0"</span>,
+
+  <span style="color:#888">// ===== 职业定义 =====</span>
+  <span style="color:#f92672">"classes"</span>: [
+    { <span style="color:#e6db74">"id"</span>: <span style="color:#e6db74">"infantry"</span>,      <span style="color:#e6db74">"name"</span>: <span style="color:#e6db74">"步兵"</span>,           <span style="color:#e6db74">"desc"</span>: <span style="color:#e6db74">"在前线堑壕中奋战"</span> },
+    { <span style="color:#e6db74">"id"</span>: <span style="color:#e6db74">"tank_crew"</span>,    <span style="color:#e6db74">"name"</span>: <span style="color:#e6db74">"坦克兵"</span>,         <span style="color:#e6db74">"desc"</span>: <span style="color:#e6db74">"驾驭钢铁巨兽"</span> },
+    { <span style="color:#e6db74">"id"</span>: <span style="color:#e6db74">"fighter_pilot"</span>, <span style="color:#e6db74">"name"</span>: <span style="color:#e6db74">"战斗机飞行员"</span>,   <span style="color:#e6db74">"desc"</span>: <span style="color:#e6db74">"驾机鏖战长空"</span> },
+    { <span style="color:#e6db74">"id"</span>: <span style="color:#e6db74">"bomber_pilot"</span>,  <span style="color:#e6db74">"name"</span>: <span style="color:#e6db74">"轰炸机飞行员"</span>,   <span style="color:#e6db74">"desc"</span>: <span style="color:#e6db74">"投下毁灭之雨"</span> },
+    { <span style="color:#e6db74">"id"</span>: <span style="color:#e6db74">"submarine"</span>,     <span style="color:#e6db74">"name"</span>: <span style="color:#e6db74">"潜艇驾驶员"</span>,      <span style="color:#e6db74">"desc"</span>: <span style="color:#e6db74">"深海猎手"</span> },
+    { <span style="color:#e6db74">"id"</span>: <span style="color:#e6db74">"battleship"</span>,    <span style="color:#e6db74">"name"</span>: <span style="color:#e6db74">"战列舰驾驶员"</span>,    <span style="color:#e6db74">"desc"</span>: <span style="color:#e6db74">"巨舰大炮的荣耀"</span> }
+  ],
+
+  <span style="color:#888">// ===== 章节列表 + 分支规则 =====</span>
+  <span style="color:#f92672">"chapters"</span>: [
+    { <span style="color:#e6db74">"id"</span>: <span style="color:#e6db74">"fall_gelb"</span>,     <span style="color:#e6db74">"file"</span>: <span style="color:#e6db74">"chapters/ch01_fall_gelb.json"</span>,
+      <span style="color:#e6db74">"name"</span>: <span style="color:#e6db74">"黄色方案"</span>,     <span style="color:#e6db74">"subtitle"</span>: <span style="color:#e6db74">"1940年5月 · 阿登森林"</span>,
+      <span style="color:#e6db74">"unlock"</span>: <span style="color:#e6db74">"start"</span> },
+    { <span style="color:#e6db74">"id"</span>: <span style="color:#e6db74">"britain"</span>,       <span style="color:#e6db74">"file"</span>: <span style="color:#e6db74">"chapters/ch02_britain.json"</span>,
+      <span style="color:#e6db74">"name"</span>: <span style="color:#e6db74">"不列颠空战"</span>,   <span style="color:#e6db74">"subtitle"</span>: <span style="color:#e6db74">"1940年7月 · 英吉利海峡"</span>,
+      <span style="color:#e6db74">"unlock"</span>: <span style="color:#e6db74">"fall_gelb"</span> },
+    ...
+    { <span style="color:#e6db74">"id"</span>: <span style="color:#e6db74">"berlin"</span>,        <span style="color:#e6db74">"file"</span>: <span style="color:#e6db74">"chapters/ch05_berlin.json"</span>,
+      <span style="color:#e6db74">"name"</span>: <span style="color:#e6db74">"柏林战役"</span>,     <span style="color:#e6db74">"subtitle"</span>: <span style="color:#e6db74">"1945年4月 · 帝国的黄昏"</span>,
+      <span style="color:#e6db74">"unlock"</span>: <span style="color:#e6db74">"stalingrad"</span> }
+  ],
+
+  <span style="color:#888">// ===== 起始章节 =====</span>
+  <span style="color:#f92672">"startChapter"</span>: <span style="color:#e6db74">"fall_gelb"</span>,
+
+  <span style="color:#888">// ===== 音乐映射 =====</span>
+  <span style="color:#f92672">"music"</span>: {
+    <span style="color:#f92672">"intro"</span>: <span style="color:#e6db74">"music/main_theme.mp3"</span>,
+    <span style="color:#f92672">"battle"</span>: <span style="color:#e6db74">"music/battle_loop.mp3"</span>,
+    <span style="color:#f92672">"berlin"</span>: <span style="color:#e6db74">"music/berlin_theme.mp3"</span>,
+    <span style="color:#f92672">"defeat"</span>: <span style="color:#e6db74">"music/defeat_theme.mp3"</span>
+  },
+
+  <span style="color:#888">// ===== 存档中保存的标识 =====</span>
+  <span style="color:#f92672">"saveContext"</span>: {
+    <span style="color:#f92672">"dlcId"</span>: <span style="color:#e6db74">"third_reich"</span>,
+    <span style="color:#f92672">"currentChapter"</span>: <span style="color:#e6db74">"fall_gelb"</span>,
+    <span style="color:#f92672">"currentNodeId"</span>: <span style="color:#e6db74">"fg_intro"</span>,
+    <span style="color:#f92672">"playerClass"</span>: <span style="color:#e6db74">"infantry"</span>
+  }
+}
+</pre>
+  </div>
+</div>
+
+<h3 style="margin-top:32px">📄 chapter/*.json — 单个章节（故事节点列表）</h3>
+
+<div class="mockup">
+  <div class="mockup-header">dlc/third-reich/chapters/ch01_fall_gelb.json</div>
+  <div class="mockup-body" style="text-align:left">
+<pre style="background:#111;color:#e6db74;padding:16px;border-radius:8px;font-size:12px;line-height:1.5;overflow-x:auto">
+{
+  <span style="color:#f92672">"chapterId"</span>: <span style="color:#e6db74">"fall_gelb"</span>,
+  <span style="color:#f92672">"startNodeId"</span>: <span style="color:#e6db74">"fg_intro"</span>,
+  <span style="color:#f92672">"defeatNodeId"</span>: <span style="color:#e6db74">"fg_defeated"</span>,
+
+  <span style="color:#f92672">"nodes"</span>: [
+    {
+      <span style="color:#f92672">"id"</span>: <span style="color:#e6db74">"fg_intro"</span>,
+      <span style="color:#f92672">"type"</span>: <span style="color:#e6db74">"narrative"</span>,
+      <span style="color:#f92672">"locationTitle"</span>: <span style="color:#e6db74">"1940年5月10日 · 阿登森林"</span>,
+      <span style="color:#f92672">"musicKey"</span>: <span style="color:#e6db74">"intro"</span>,
+      <span style="color:#f92672">"text"</span>: <span style="color:#e6db74">"1940年5月10日凌晨..."</span>,
+      <span style="color:#f92672">"nextNodeId"</span>: <span style="color:#e6db74">"fg_choice_1"</span>
+    },
+    {
+      <span style="color:#f92672">"id"</span>: <span style="color:#e6db74">"fg_choice_1"</span>,
+      <span style="color:#f92672">"type"</span>: <span style="color:#e6db74">"choice"</span>,
+      <span style="color:#f92672">"locationTitle"</span>: <span style="color:#e6db74">"阿登森林 · 前线堑壕"</span>,
+      <span style="color:#f92672">"musicKey"</span>: <span style="color:#e6db74">"intro"</span>,
+      <span style="color:#f92672">"text"</span>: <span style="color:#e6db74">"前方传来密集的枪声..."</span>,
+      <span style="color:#f92672">"choices"</span>: [
+        {
+          <span style="color:#f92672">"text"</span>: <span style="color:#e6db74">"【冲锋】跟随班长冲出堑壕"</span>,
+          <span style="color:#f92672">"isCombat"</span>: <span style="color:#66d9ef">true</span>,
+          <span style="color:#f92672">"combatThreshold"</span>: <span style="color:#66d9ef">50</span>,
+          <span style="color:#f92672">"bonusClasses"</span>: [<span style="color:#e6db74">"infantry"</span>],
+          <span style="color:#f92672">"successNodeId"</span>: <span style="color:#e6db74">"fg_rush_success"</span>,
+          <span style="color:#f92672">"failureNodeId"</span>: <span style="color:#e6db74">"fg_rush_fail"</span>,
+          <span style="color:#f92672">"hpDelta"</span>: <span style="color:#66d9ef">0</span>,
+          <span style="color:#f92672">"moraleDelta"</span>: <span style="color:#66d9ef">10</span>,
+          <span style="color:#f92672">"failHpDelta"</span>: <span style="color:#66d9ef">-25</span>,
+          <span style="color:#f92672">"failMoraleDelta"</span>: <span style="color:#66d9ef">-10</span>
+        },
+        {
+          <span style="color:#f92672">"text"</span>: <span style="color:#e6db74">"【隐蔽】留在堑壕里掩护战友"</span>,
+          <span style="color:#f92672">"nextNodeId"</span>: <span style="color:#e6db74">"fg_cover_fire"</span>
+        }
+      ]
+    },
+    {
+      <span style="color:#f92672">"id"</span>: <span style="color:#e6db74">"fg_victory"</span>,
+      <span style="color:#f92672">"type"</span>: <span style="color:#e6db74">"ending"</span>,
+      <span style="color:#f92672">"isVictory"</span>: <span style="color:#66d9ef">true</span>,
+      <span style="color:#f92672">"locationTitle"</span>: <span style="color:#e6db74">"黄色方案 — 结束"</span>,
+      <span style="color:#f92672">"text"</span>: <span style="color:#e6db74">"你完成了战斗..."</span>
+    }
+  ]
+}
+</pre>
+  </div>
+</div>
+
+<h3 style="margin-top:32px">📋 节点类型一览</h3>
+
+<table style="width:100%; border-collapse:collapse; font-size:13px; margin-top:12px">
+  <tr style="background:#222">
+    <th style="padding:8px;border:1px solid #444">type</th>
+    <th style="padding:8px;border:1px solid #444">说明</th>
+    <th style="padding:8px;border:1px solid #444">必要字段</th>
+  </tr>
+  <tr>
+    <td style="padding:8px;border:1px solid #333"><code>narrative</code></td>
+    <td style="padding:8px;border:1px solid #333">纯叙事，一个"继续"按钮</td>
+    <td style="padding:8px;border:1px solid #333">nextNodeId</td>
+  </tr>
+  <tr>
+    <td style="padding:8px;border:1px solid #333"><code>choice</code></td>
+    <td style="padding:8px;border:1px solid #333">玩家做出选择（含战斗判定）</td>
+    <td style="padding:8px;border:1px solid #333">choices[]</td>
+  </tr>
+  <tr>
+    <td style="padding:8px;border:1px solid #333"><code>ending</code></td>
+    <td style="padding:8px;border:1px solid #333">终止节点</td>
+    <td style="padding:8px;border:1px solid #333">isVictory / isDefeat</td>
+  </tr>
+</table>

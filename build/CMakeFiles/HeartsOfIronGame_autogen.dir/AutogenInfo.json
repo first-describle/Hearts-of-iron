@@ -408,75 +408,45 @@
 	"HEADERS" : 
 	[
 		[
-			"D:/Creater/Hearts of iron/core/GameEngine.h",
+			"D:/Creater/Hearts of iron/engine/DiceSystem.h",
 			"MU",
-			"TAC5DWH4SE/moc_GameEngine.cpp",
+			"BCDQH4B662/moc_DiceSystem.cpp",
 			null
 		],
 		[
-			"D:/Creater/Hearts of iron/core/GameState.h",
+			"D:/Creater/Hearts of iron/engine/DlcManager.h",
 			"MU",
-			"TAC5DWH4SE/moc_GameState.cpp",
+			"BCDQH4B662/moc_DlcManager.cpp",
 			null
 		],
 		[
-			"D:/Creater/Hearts of iron/core/MusicPlayer.h",
+			"D:/Creater/Hearts of iron/engine/DlcTypes.h",
 			"MU",
-			"TAC5DWH4SE/moc_MusicPlayer.cpp",
+			"BCDQH4B662/moc_DlcTypes.cpp",
 			null
 		],
 		[
-			"D:/Creater/Hearts of iron/core/Player.h",
+			"D:/Creater/Hearts of iron/engine/MusicPlayer.h",
 			"MU",
-			"TAC5DWH4SE/moc_Player.cpp",
+			"BCDQH4B662/moc_MusicPlayer.cpp",
 			null
 		],
 		[
-			"D:/Creater/Hearts of iron/core/SaveManager.h",
+			"D:/Creater/Hearts of iron/engine/NodeEngine.h",
 			"MU",
-			"TAC5DWH4SE/moc_SaveManager.cpp",
+			"BCDQH4B662/moc_NodeEngine.cpp",
 			null
 		],
 		[
-			"D:/Creater/Hearts of iron/core/ScenarioBase.h",
+			"D:/Creater/Hearts of iron/engine/PlayerSystem.h",
 			"MU",
-			"TAC5DWH4SE/moc_ScenarioBase.cpp",
+			"BCDQH4B662/moc_PlayerSystem.cpp",
 			null
 		],
 		[
-			"D:/Creater/Hearts of iron/core/StoryNode.h",
+			"D:/Creater/Hearts of iron/engine/SaveManager.h",
 			"MU",
-			"TAC5DWH4SE/moc_StoryNode.cpp",
-			null
-		],
-		[
-			"D:/Creater/Hearts of iron/scenarios/BerlinScenario.h",
-			"MU",
-			"ECFDFH46C5/moc_BerlinScenario.cpp",
-			null
-		],
-		[
-			"D:/Creater/Hearts of iron/scenarios/BritainScenario.h",
-			"MU",
-			"ECFDFH46C5/moc_BritainScenario.cpp",
-			null
-		],
-		[
-			"D:/Creater/Hearts of iron/scenarios/FallGelbScenario.h",
-			"MU",
-			"ECFDFH46C5/moc_FallGelbScenario.cpp",
-			null
-		],
-		[
-			"D:/Creater/Hearts of iron/scenarios/StalingradScenario.h",
-			"MU",
-			"ECFDFH46C5/moc_StalingradScenario.cpp",
-			null
-		],
-		[
-			"D:/Creater/Hearts of iron/scenarios/WolfPackScenario.h",
-			"MU",
-			"ECFDFH46C5/moc_WolfPackScenario.cpp",
+			"BCDQH4B662/moc_SaveManager.cpp",
 			null
 		],
 		[
@@ -666,29 +636,13 @@
 	"SETTINGS_FILE_Release" : "D:/Creater/Hearts of iron/build/CMakeFiles/HeartsOfIronGame_autogen.dir/AutogenUsed_Release.txt",
 	"SOURCES" : 
 	[
-		[ "D:/Creater/Hearts of iron/core/GameEngine.cpp", "MU", null ],
-		[ "D:/Creater/Hearts of iron/core/MusicPlayer.cpp", "MU", null ],
-		[ "D:/Creater/Hearts of iron/core/Player.cpp", "MU", null ],
-		[ "D:/Creater/Hearts of iron/core/SaveManager.cpp", "MU", null ],
-		[ "D:/Creater/Hearts of iron/core/ScenarioBase.cpp", "MU", null ],
+		[ "D:/Creater/Hearts of iron/engine/DiceSystem.cpp", "MU", null ],
+		[ "D:/Creater/Hearts of iron/engine/DlcManager.cpp", "MU", null ],
+		[ "D:/Creater/Hearts of iron/engine/MusicPlayer.cpp", "MU", null ],
+		[ "D:/Creater/Hearts of iron/engine/NodeEngine.cpp", "MU", null ],
+		[ "D:/Creater/Hearts of iron/engine/PlayerSystem.cpp", "MU", null ],
+		[ "D:/Creater/Hearts of iron/engine/SaveManager.cpp", "MU", null ],
 		[ "D:/Creater/Hearts of iron/main.cpp", "MU", null ],
-		[ "D:/Creater/Hearts of iron/scenarios/BerlinScenario.cpp", "MU", null ],
-		[ "D:/Creater/Hearts of iron/scenarios/BritainScenario.cpp", "MU", null ],
-		[
-			"D:/Creater/Hearts of iron/scenarios/FallGelbScenario.cpp",
-			"MU",
-			null
-		],
-		[
-			"D:/Creater/Hearts of iron/scenarios/StalingradScenario.cpp",
-			"MU",
-			null
-		],
-		[
-			"D:/Creater/Hearts of iron/scenarios/WolfPackScenario.cpp",
-			"MU",
-			null
-		],
 		[ "D:/Creater/Hearts of iron/ui/CharacterCreateWidget.cpp", "MU", null ],
 		[ "D:/Creater/Hearts of iron/ui/GameWidget.cpp", "MU", null ],
 		[ "D:/Creater/Hearts of iron/ui/MainWindow.cpp", "MU", null ],

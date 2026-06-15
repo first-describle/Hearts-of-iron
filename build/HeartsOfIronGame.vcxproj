@@ -133,6 +133,18 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
     </PreBuildEvent>
+    <PostBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+C:\ST\STM32CubeCLT_1.18.0\CMake\bin\cmake.exe -E copy_directory "D:/Creater/Hearts of iron/dlc" "D:/Creater/Hearts of iron/build/Debug/dlc"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
     <Link>
       <AdditionalDependencies>E:\Qt\6.10.1\msvc2022_64\lib\Qt6Widgetsd.lib;E:\Qt\6.10.1\msvc2022_64\lib\Qt6Multimediad.lib;E:\Qt\6.10.1\msvc2022_64\lib\Qt6Guid.lib;d3d11.lib;dxgi.lib;dxguid.lib;d3d12.lib;E:\Qt\6.10.1\msvc2022_64\lib\Qt6Networkd.lib;ws2_32.lib;E:\Qt\6.10.1\msvc2022_64\lib\Qt6Cored.lib;mpr.lib;userenv.lib;E:\Qt\6.10.1\msvc2022_64\lib\Qt6EntryPointd.lib;shell32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -196,6 +208,18 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
     </PreBuildEvent>
+    <PostBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+C:\ST\STM32CubeCLT_1.18.0\CMake\bin\cmake.exe -E copy_directory "D:/Creater/Hearts of iron/dlc" "D:/Creater/Hearts of iron/build/Release/dlc"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
     <Link>
       <AdditionalDependencies>E:\Qt\6.10.1\msvc2022_64\lib\Qt6Widgets.lib;E:\Qt\6.10.1\msvc2022_64\lib\Qt6Multimedia.lib;E:\Qt\6.10.1\msvc2022_64\lib\Qt6Gui.lib;d3d11.lib;dxgi.lib;dxguid.lib;d3d12.lib;E:\Qt\6.10.1\msvc2022_64\lib\Qt6Network.lib;ws2_32.lib;E:\Qt\6.10.1\msvc2022_64\lib\Qt6Core.lib;mpr.lib;userenv.lib;E:\Qt\6.10.1\msvc2022_64\lib\Qt6EntryPoint.lib;shell32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -259,6 +283,18 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
     </PreBuildEvent>
+    <PostBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+C:\ST\STM32CubeCLT_1.18.0\CMake\bin\cmake.exe -E copy_directory "D:/Creater/Hearts of iron/dlc" "D:/Creater/Hearts of iron/build/MinSizeRel/dlc"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
     <Link>
       <AdditionalDependencies>E:\Qt\6.10.1\msvc2022_64\lib\Qt6Widgets.lib;E:\Qt\6.10.1\msvc2022_64\lib\Qt6Multimedia.lib;E:\Qt\6.10.1\msvc2022_64\lib\Qt6Gui.lib;d3d11.lib;dxgi.lib;dxguid.lib;d3d12.lib;E:\Qt\6.10.1\msvc2022_64\lib\Qt6Network.lib;ws2_32.lib;E:\Qt\6.10.1\msvc2022_64\lib\Qt6Core.lib;mpr.lib;userenv.lib;E:\Qt\6.10.1\msvc2022_64\lib\Qt6EntryPoint.lib;shell32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -321,6 +357,18 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
     </PreBuildEvent>
+    <PostBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+C:\ST\STM32CubeCLT_1.18.0\CMake\bin\cmake.exe -E copy_directory "D:/Creater/Hearts of iron/dlc" "D:/Creater/Hearts of iron/build/RelWithDebInfo/dlc"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
     <Link>
       <AdditionalDependencies>E:\Qt\6.10.1\msvc2022_64\lib\Qt6Widgets.lib;E:\Qt\6.10.1\msvc2022_64\lib\Qt6Multimedia.lib;E:\Qt\6.10.1\msvc2022_64\lib\Qt6Gui.lib;d3d11.lib;dxgi.lib;dxguid.lib;d3d12.lib;E:\Qt\6.10.1\msvc2022_64\lib\Qt6Network.lib;ws2_32.lib;E:\Qt\6.10.1\msvc2022_64\lib\Qt6Core.lib;mpr.lib;userenv.lib;E:\Qt\6.10.1\msvc2022_64\lib\Qt6EntryPoint.lib;shell32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -500,33 +548,24 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="D:\Creater\Hearts of iron\main.cpp" />
-    <ClCompile Include="D:\Creater\Hearts of iron\core\Player.cpp" />
-    <ClCompile Include="D:\Creater\Hearts of iron\core\GameEngine.cpp" />
-    <ClCompile Include="D:\Creater\Hearts of iron\core\SaveManager.cpp" />
-    <ClCompile Include="D:\Creater\Hearts of iron\core\MusicPlayer.cpp" />
-    <ClCompile Include="D:\Creater\Hearts of iron\core\ScenarioBase.cpp" />
-    <ClCompile Include="D:\Creater\Hearts of iron\scenarios\FallGelbScenario.cpp" />
-    <ClCompile Include="D:\Creater\Hearts of iron\scenarios\BritainScenario.cpp" />
-    <ClCompile Include="D:\Creater\Hearts of iron\scenarios\WolfPackScenario.cpp" />
-    <ClCompile Include="D:\Creater\Hearts of iron\scenarios\StalingradScenario.cpp" />
-    <ClCompile Include="D:\Creater\Hearts of iron\scenarios\BerlinScenario.cpp" />
+    <ClCompile Include="D:\Creater\Hearts of iron\engine\PlayerSystem.cpp" />
+    <ClCompile Include="D:\Creater\Hearts of iron\engine\DiceSystem.cpp" />
+    <ClCompile Include="D:\Creater\Hearts of iron\engine\DlcManager.cpp" />
+    <ClCompile Include="D:\Creater\Hearts of iron\engine\NodeEngine.cpp" />
+    <ClCompile Include="D:\Creater\Hearts of iron\engine\SaveManager.cpp" />
+    <ClCompile Include="D:\Creater\Hearts of iron\engine\MusicPlayer.cpp" />
     <ClCompile Include="D:\Creater\Hearts of iron\ui\MainWindow.cpp" />
     <ClCompile Include="D:\Creater\Hearts of iron\ui\MenuWidget.cpp" />
     <ClCompile Include="D:\Creater\Hearts of iron\ui\GameWidget.cpp" />
     <ClCompile Include="D:\Creater\Hearts of iron\ui\CharacterCreateWidget.cpp" />
     <ClCompile Include="D:\Creater\Hearts of iron\ui\SaveLoadDialog.cpp" />
-    <ClInclude Include="D:\Creater\Hearts of iron\core\GameState.h" />
-    <ClInclude Include="D:\Creater\Hearts of iron\core\StoryNode.h" />
-    <ClInclude Include="D:\Creater\Hearts of iron\core\Player.h" />
-    <ClInclude Include="D:\Creater\Hearts of iron\core\GameEngine.h" />
-    <ClInclude Include="D:\Creater\Hearts of iron\core\SaveManager.h" />
-    <ClInclude Include="D:\Creater\Hearts of iron\core\MusicPlayer.h" />
-    <ClInclude Include="D:\Creater\Hearts of iron\core\ScenarioBase.h" />
-    <ClInclude Include="D:\Creater\Hearts of iron\scenarios\FallGelbScenario.h" />
-    <ClInclude Include="D:\Creater\Hearts of iron\scenarios\BritainScenario.h" />
-    <ClInclude Include="D:\Creater\Hearts of iron\scenarios\WolfPackScenario.h" />
-    <ClInclude Include="D:\Creater\Hearts of iron\scenarios\StalingradScenario.h" />
-    <ClInclude Include="D:\Creater\Hearts of iron\scenarios\BerlinScenario.h" />
+    <ClInclude Include="D:\Creater\Hearts of iron\engine\DlcTypes.h" />
+    <ClInclude Include="D:\Creater\Hearts of iron\engine\PlayerSystem.h" />
+    <ClInclude Include="D:\Creater\Hearts of iron\engine\DiceSystem.h" />
+    <ClInclude Include="D:\Creater\Hearts of iron\engine\DlcManager.h" />
+    <ClInclude Include="D:\Creater\Hearts of iron\engine\NodeEngine.h" />
+    <ClInclude Include="D:\Creater\Hearts of iron\engine\SaveManager.h" />
+    <ClInclude Include="D:\Creater\Hearts of iron\engine\MusicPlayer.h" />
     <ClInclude Include="D:\Creater\Hearts of iron\ui\MainWindow.h" />
     <ClInclude Include="D:\Creater\Hearts of iron\ui\MenuWidget.h" />
     <ClInclude Include="D:\Creater\Hearts of iron\ui\GameWidget.h" />

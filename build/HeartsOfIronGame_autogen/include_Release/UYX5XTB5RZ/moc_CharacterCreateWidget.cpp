@@ -43,8 +43,7 @@ template <> constexpr inline auto CharacterCreateWidget::qt_create_metaobjectdat
         "",
         "startGame",
         "name",
-        "PlayerClass",
-        "cls",
+        "classId",
         "onClassSelected",
         "id",
         "onStartClicked"
@@ -54,15 +53,15 @@ template <> constexpr inline auto CharacterCreateWidget::qt_create_metaobjectdat
         // Signal 'backToMenu'
         QtMocHelpers::SignalData<void()>(1, 2, QMC::AccessPublic, QMetaType::Void),
         // Signal 'startGame'
-        QtMocHelpers::SignalData<void(const QString &, PlayerClass)>(3, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::QString, 4 }, { 0x80000000 | 5, 6 },
+        QtMocHelpers::SignalData<void(const QString &, const QString &)>(3, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 4 }, { QMetaType::QString, 5 },
         }}),
         // Slot 'onClassSelected'
-        QtMocHelpers::SlotData<void(int)>(7, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::Int, 8 },
+        QtMocHelpers::SlotData<void(int)>(6, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 7 },
         }}),
         // Slot 'onStartClicked'
-        QtMocHelpers::SlotData<void()>(9, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(8, 2, QMC::AccessPrivate, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -87,7 +86,7 @@ void CharacterCreateWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
         case 0: _t->backToMenu(); break;
-        case 1: _t->startGame((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<PlayerClass>>(_a[2]))); break;
+        case 1: _t->startGame((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[2]))); break;
         case 2: _t->onClassSelected((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
         case 3: _t->onStartClicked(); break;
         default: ;
@@ -96,7 +95,7 @@ void CharacterCreateWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c
     if (_c == QMetaObject::IndexOfMethod) {
         if (QtMocHelpers::indexOfMethod<void (CharacterCreateWidget::*)()>(_a, &CharacterCreateWidget::backToMenu, 0))
             return;
-        if (QtMocHelpers::indexOfMethod<void (CharacterCreateWidget::*)(const QString & , PlayerClass )>(_a, &CharacterCreateWidget::startGame, 1))
+        if (QtMocHelpers::indexOfMethod<void (CharacterCreateWidget::*)(const QString & , const QString & )>(_a, &CharacterCreateWidget::startGame, 1))
             return;
     }
 }
@@ -139,7 +138,7 @@ void CharacterCreateWidget::backToMenu()
 }
 
 // SIGNAL 1
-void CharacterCreateWidget::startGame(const QString & _t1, PlayerClass _t2)
+void CharacterCreateWidget::startGame(const QString & _t1, const QString & _t2)
 {
     QMetaObject::activate<void>(this, &staticMetaObject, 1, nullptr, _t1, _t2);
 }

@@ -42,7 +42,9 @@ template <> constexpr inline auto MenuWidget::qt_create_metaobjectdata<qt_meta_t
         "newGameClicked",
         "",
         "loadGameClicked",
-        "exitGameClicked"
+        "exitGameClicked",
+        "dlcSelected",
+        "dlcId"
     };
 
     QtMocHelpers::UintData qt_methods {
@@ -52,6 +54,10 @@ template <> constexpr inline auto MenuWidget::qt_create_metaobjectdata<qt_meta_t
         QtMocHelpers::SignalData<void()>(3, 2, QMC::AccessPublic, QMetaType::Void),
         // Signal 'exitGameClicked'
         QtMocHelpers::SignalData<void()>(4, 2, QMC::AccessPublic, QMetaType::Void),
+        // Signal 'dlcSelected'
+        QtMocHelpers::SignalData<void(const QString &)>(5, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 6 },
+        }}),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -78,6 +84,7 @@ void MenuWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 0: _t->newGameClicked(); break;
         case 1: _t->loadGameClicked(); break;
         case 2: _t->exitGameClicked(); break;
+        case 3: _t->dlcSelected((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
         default: ;
         }
     }
@@ -87,6 +94,8 @@ void MenuWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         if (QtMocHelpers::indexOfMethod<void (MenuWidget::*)()>(_a, &MenuWidget::loadGameClicked, 1))
             return;
         if (QtMocHelpers::indexOfMethod<void (MenuWidget::*)()>(_a, &MenuWidget::exitGameClicked, 2))
+            return;
+        if (QtMocHelpers::indexOfMethod<void (MenuWidget::*)(const QString & )>(_a, &MenuWidget::dlcSelected, 3))
             return;
     }
 }
@@ -110,14 +119,14 @@ int MenuWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 3)
+        if (_id < 4)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 3;
+        _id -= 4;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 3)
+        if (_id < 4)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 3;
+        _id -= 4;
     }
     return _id;
 }
@@ -138,5 +147,11 @@ void MenuWidget::loadGameClicked()
 void MenuWidget::exitGameClicked()
 {
     QMetaObject::activate(this, &staticMetaObject, 2, nullptr);
+}
+
+// SIGNAL 3
+void MenuWidget::dlcSelected(const QString & _t1)
+{
+    QMetaObject::activate<void>(this, &staticMetaObject, 3, nullptr, _t1);
 }
 QT_WARNING_POP

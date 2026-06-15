@@ -1,6 +1,6 @@
 D:/Creater/Hearts\ of\ iron/build/HeartsOfIronGame_autogen/include_Release/UYX5XTB5RZ/moc_MainWindow.cpp: D:/Creater/Hearts\ of\ iron/ui/MainWindow.h \
-  D:/Creater/Hearts\ of\ iron/core/GameState.h \
-  D:/Creater/Hearts\ of\ iron/core/Player.h \
+  D:/Creater/Hearts\ of\ iron/engine/DlcTypes.h \
+  D:/Creater/Hearts\ of\ iron/engine/PlayerSystem.h \
   D:/Windows\ Kits/10/Include/10.0.26100.0/ucrt/assert.h \
   D:/Windows\ Kits/10/Include/10.0.26100.0/ucrt/corecrt.h \
   D:/Windows\ Kits/10/Include/10.0.26100.0/ucrt/corecrt_malloc.h \
@@ -58,11 +58,12 @@ D:/Creater/Hearts\ of\ iron/build/HeartsOfIronGame_autogen/include_Release/UYX5X
   D:/vs_2022/VC/Tools/MSVC/14.44.35207/include/version \
   D:/vs_2022/VC/Tools/MSVC/14.44.35207/include/yvals.h \
   D:/vs_2022/VC/Tools/MSVC/14.44.35207/include/yvals_core.h \
+  E:/Qt/6.10.1/msvc2022_64/include/QtCore/QJsonArray \
   E:/Qt/6.10.1/msvc2022_64/include/QtCore/QJsonObject \
   E:/Qt/6.10.1/msvc2022_64/include/QtCore/QList \
+  E:/Qt/6.10.1/msvc2022_64/include/QtCore/QMap \
   E:/Qt/6.10.1/msvc2022_64/include/QtCore/QSet \
   E:/Qt/6.10.1/msvc2022_64/include/QtCore/QString \
-  E:/Qt/6.10.1/msvc2022_64/include/QtCore/QStringList \
   E:/Qt/6.10.1/msvc2022_64/include/QtCore/q17memory.h \
   E:/Qt/6.10.1/msvc2022_64/include/QtCore/q20functional.h \
   E:/Qt/6.10.1/msvc2022_64/include/QtCore/q20iterator.h \
@@ -120,6 +121,7 @@ D:/Creater/Hearts\ of\ iron/build/HeartsOfIronGame_autogen/include_Release/UYX5X
   E:/Qt/6.10.1/msvc2022_64/include/QtCore/qiodevicebase.h \
   E:/Qt/6.10.1/msvc2022_64/include/QtCore/qiterable.h \
   E:/Qt/6.10.1/msvc2022_64/include/QtCore/qiterator.h \
+  E:/Qt/6.10.1/msvc2022_64/include/QtCore/qjsonarray.h \
   E:/Qt/6.10.1/msvc2022_64/include/QtCore/qjsondocument.h \
   E:/Qt/6.10.1/msvc2022_64/include/QtCore/qjsonobject.h \
   E:/Qt/6.10.1/msvc2022_64/include/QtCore/qjsonparseerror.h \

@@ -41,14 +41,16 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         "MainWindow",
         "showMainMenu",
         "",
+        "showDlcSelect",
         "showCharacterCreate",
         "showGameScreen",
+        "onDlcSelected",
+        "dlcId",
         "onStartGame",
         "name",
-        "PlayerClass",
-        "cls",
+        "classId",
         "onLoadGame",
-        "Player",
+        "PlayerSystem",
         "loadedPlayer",
         "onChoiceMade",
         "index",
@@ -64,54 +66,59 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         "success",
         "hpChange",
         "moraleChange",
-        "onScenarioVictory",
-        "ScenarioId",
-        "id",
-        "onScenarioDefeat"
+        "onChapterVictory",
+        "chapterId",
+        "onChapterDefeat"
     };
 
     QtMocHelpers::UintData qt_methods {
         // Slot 'showMainMenu'
         QtMocHelpers::SlotData<void()>(1, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'showCharacterCreate'
+        // Slot 'showDlcSelect'
         QtMocHelpers::SlotData<void()>(3, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'showGameScreen'
+        // Slot 'showCharacterCreate'
         QtMocHelpers::SlotData<void()>(4, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'showGameScreen'
+        QtMocHelpers::SlotData<void()>(5, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onDlcSelected'
+        QtMocHelpers::SlotData<void(const QString &)>(6, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::QString, 7 },
+        }}),
         // Slot 'onStartGame'
-        QtMocHelpers::SlotData<void(const QString &, PlayerClass)>(5, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::QString, 6 }, { 0x80000000 | 7, 8 },
+        QtMocHelpers::SlotData<void(const QString &, const QString &)>(8, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::QString, 9 }, { QMetaType::QString, 10 },
         }}),
         // Slot 'onLoadGame'
-        QtMocHelpers::SlotData<void(const Player &)>(9, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { 0x80000000 | 10, 11 },
+        QtMocHelpers::SlotData<void(const PlayerSystem &)>(11, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { 0x80000000 | 12, 13 },
         }}),
         // Slot 'onChoiceMade'
-        QtMocHelpers::SlotData<void(int)>(12, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::Int, 13 },
+        QtMocHelpers::SlotData<void(int)>(14, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 15 },
         }}),
         // Slot 'openSaveDialog'
-        QtMocHelpers::SlotData<void()>(14, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(16, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'openLoadDialog'
-        QtMocHelpers::SlotData<void()>(15, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(17, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onNodeChanged'
-        QtMocHelpers::SlotData<void(const StoryNode *)>(16, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { 0x80000000 | 17, 18 },
+        QtMocHelpers::SlotData<void(const StoryNode *)>(18, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { 0x80000000 | 19, 20 },
         }}),
         // Slot 'onStatsChanged'
-        QtMocHelpers::SlotData<void(int, int)>(19, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::Int, 20 }, { QMetaType::Int, 21 },
+        QtMocHelpers::SlotData<void(int, int)>(21, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 22 }, { QMetaType::Int, 23 },
         }}),
         // Slot 'onCombatResult'
-        QtMocHelpers::SlotData<void(bool, int, int)>(22, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::Bool, 23 }, { QMetaType::Int, 24 }, { QMetaType::Int, 25 },
+        QtMocHelpers::SlotData<void(bool, int, int)>(24, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Bool, 25 }, { QMetaType::Int, 26 }, { QMetaType::Int, 27 },
         }}),
-        // Slot 'onScenarioVictory'
-        QtMocHelpers::SlotData<void(ScenarioId)>(26, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { 0x80000000 | 27, 28 },
+        // Slot 'onChapterVictory'
+        QtMocHelpers::SlotData<void(const QString &)>(28, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::QString, 29 },
         }}),
-        // Slot 'onScenarioDefeat'
-        QtMocHelpers::SlotData<void(ScenarioId)>(29, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { 0x80000000 | 27, 28 },
+        // Slot 'onChapterDefeat'
+        QtMocHelpers::SlotData<void(const QString &)>(30, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::QString, 29 },
         }}),
     };
     QtMocHelpers::UintData qt_properties {
@@ -137,18 +144,20 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
         case 0: _t->showMainMenu(); break;
-        case 1: _t->showCharacterCreate(); break;
-        case 2: _t->showGameScreen(); break;
-        case 3: _t->onStartGame((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<PlayerClass>>(_a[2]))); break;
-        case 4: _t->onLoadGame((*reinterpret_cast<std::add_pointer_t<Player>>(_a[1]))); break;
-        case 5: _t->onChoiceMade((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
-        case 6: _t->openSaveDialog(); break;
-        case 7: _t->openLoadDialog(); break;
-        case 8: _t->onNodeChanged((*reinterpret_cast<std::add_pointer_t<const StoryNode*>>(_a[1]))); break;
-        case 9: _t->onStatsChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[2]))); break;
-        case 10: _t->onCombatResult((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[2])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[3]))); break;
-        case 11: _t->onScenarioVictory((*reinterpret_cast<std::add_pointer_t<ScenarioId>>(_a[1]))); break;
-        case 12: _t->onScenarioDefeat((*reinterpret_cast<std::add_pointer_t<ScenarioId>>(_a[1]))); break;
+        case 1: _t->showDlcSelect(); break;
+        case 2: _t->showCharacterCreate(); break;
+        case 3: _t->showGameScreen(); break;
+        case 4: _t->onDlcSelected((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
+        case 5: _t->onStartGame((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[2]))); break;
+        case 6: _t->onLoadGame((*reinterpret_cast<std::add_pointer_t<PlayerSystem>>(_a[1]))); break;
+        case 7: _t->onChoiceMade((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
+        case 8: _t->openSaveDialog(); break;
+        case 9: _t->openLoadDialog(); break;
+        case 10: _t->onNodeChanged((*reinterpret_cast<std::add_pointer_t<const StoryNode*>>(_a[1]))); break;
+        case 11: _t->onStatsChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[2]))); break;
+        case 12: _t->onCombatResult((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[2])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[3]))); break;
+        case 13: _t->onChapterVictory((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
+        case 14: _t->onChapterDefeat((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
         default: ;
         }
     }
@@ -173,14 +182,14 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 13)
+        if (_id < 15)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 13;
+        _id -= 15;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 13)
+        if (_id < 15)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 13;
+        _id -= 15;
     }
     return _id;
 }

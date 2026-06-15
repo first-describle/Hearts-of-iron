@@ -1,0 +1,74 @@
+<h2>设计方案：引擎化改造</h2>
+<p class="subtitle">将"钢铁意志"从硬编码游戏改造为 JSON 驱动的通用互动叙事引擎</p>
+
+<h3>📋 需求确认</h3>
+<div class="section" style="font-size:14px;line-height:1.8">
+  ✅ JSON 数据文件编写 DLC（创作者无需懂 C++）<br>
+  ✅ 同一玩法框架，任意题材<br>
+  ✅ DLC = 文件夹形式，放入 dlc/ 目录自动加载<br>
+  ✅ 现有 5 个战役转为 JSON DLC，引擎纯净化<br>
+  ✅ 最小可行：剧本数据 + 职业定义 + 背景音乐<br>
+  ✅ 每个 DLC 独立定义职业，互不干扰<br>
+  ✅ 一个 DLC = 一个完整战役（多个章节）<br>
+  ✅ 章节间支持分支路线
+</div>
+
+<hr style="margin: 24px 0; border-color: #333">
+
+<h3>🏗️ 架构对比</h3>
+
+<div class="split">
+  <div class="mockup">
+    <div class="mockup-header">❌ 改造前</div>
+    <div class="mockup-body" style="font-family:monospace;font-size:12px;line-height:1.6;text-align:left">
+      main.cpp<br>
+      ├── GameEngine<br>
+      │   ├── registerScenarios() ← <span style="color:#c44">硬编码 new 5个类</span><br>
+      │   ├── ScenarioId 枚举 ← <span style="color:#c44">硬编码</span><br>
+      │   └── PlayerClass 枚举 ← <span style="color:#c44">硬编码</span><br>
+      ├── scenarios/ ← <span style="color:#c44">每个场景一个 .h/.cpp</span><br>
+      └── ui/  ← Qt Widgets 固定界面<br>
+      <br>
+      <strong style="color:#c44">新增场景 = 写C++ + 改CMake + 重编译</strong>
+    </div>
+  </div>
+  <div class="mockup">
+    <div class="mockup-header">✅ 改造后</div>
+    <div class="mockup-body" style="font-family:monospace;font-size:12px;line-height:1.6;text-align:left">
+      main.cpp<br>
+      ├── GameEngine (纯核心引擎)<br>
+      │   ├── DlcManager ← 扫描 dlc/ 目录<br>
+      │   ├── NodeEngine ← 节点导航+选择+骰子<br>
+      │   ├── PlayerSystem ← 动态职业属性<br>
+      │   └── SaveSystem ← JSON存档<br>
+      ├── dlc/  ← <strong style="color:#4a4">创作者只碰这里</strong><br>
+      │   ├── third-reich/ ← 官方DLC示例<br>
+      │   │   ├── manifest.json<br>
+      │   │   ├── chapters/*.json<br>
+      │   │   └── music/*.mp3<br>
+      │   └── three-kingdoms/ ← 第三方DLC<br>
+      ├── engine/ ← 通用引擎模块<br>
+      └── ui/  ← 通用UI框架<br>
+      <br>
+      <strong style="color:#4a4">新增DLC = 写JSON + 丢进文件夹 → 搞定</strong>
+    </div>
+  </div>
+</div>
+
+<h3 style="margin-top:32px">🧱 DLC 文件夹结构设计</h3>
+
+<div class="mockup">
+  <div class="mockup-header">dlc/three-kingdoms/ 示例</div>
+  <div class="mockup-body" style="font-family:monospace;font-size:13px;line-height:1.8;text-align:left">
+    <span style="color:#888">┌─ manifest.json</span> &nbsp;&nbsp;DLC元信息：名称、版本、职业列表、章节顺序/分支<br>
+    <span style="color:#888">├─ chapters/</span><br>
+    <span style="color:#888">│   ├─ ch01_yellow_turban.json</span> &nbsp;&nbsp;黄巾之乱（StoryNode列表）<br>
+    <span style="color:#888">│   ├─ ch02_guandu.json</span> &nbsp;&nbsp;官渡之战<br>
+    <span style="color:#888">│   ├─ ch03_chibi.json</span> &nbsp;&nbsp;赤壁之战<br>
+    <span style="color:#888">│   └─ ch04_wuzhangyuan.json</span> &nbsp;&nbsp;五丈原<br>
+    <span style="color:#888">├─ music/</span><br>
+    <span style="color:#888">│   ├── main_theme.mp3</span><br>
+    <span style="color:#888">│   └── battle.mp3</span><br>
+    <span style="color:#888">└─ resources/</span> (可选)
+  </div>
+</div>

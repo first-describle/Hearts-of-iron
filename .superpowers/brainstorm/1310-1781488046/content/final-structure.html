@@ -1,0 +1,90 @@
+<h2>第四节：最终目录结构 + UI 适配</h2>
+<p class="subtitle">改造完成后的项目全貌</p>
+
+<h3>📁 改造后项目结构</h3>
+
+<div class="mockup">
+  <div class="mockup-body" style="font-family:monospace;font-size:12px;line-height:1.8;text-align:left">
+Hearts of iron/<br>
+├── <span style="color:#e6db74">CMakeLists.txt</span>           <span style="color:#888">— 构建配置（新增 engine/ 文件）</span><br>
+├── <span style="color:#e6db74">main.cpp</span>                 <span style="color:#888">— 应用入口（创建MainWindow → DlcManager）</span><br>
+├── <span style="color:#888">engine/</span>                    <span style="color:#4a4"><strong>← 通用引擎层（不依赖任何DLC）</strong></span><br>
+│   ├── DlcTypes.h             <span style="color:#888">— 运行时数据结构（DlcManifest/DlcChapter等）</span><br>
+│   ├── DlcManager.h/.cpp      <span style="color:#888">— 扫描/加载/校验 dlc/ 目录</span><br>
+│   ├── NodeEngine.h/.cpp      <span style="color:#888">— 节点导航 + 选择执行 + 章节跳转</span><br>
+│   ├── PlayerSystem.h/.cpp    <span style="color:#888">— 动态职业 + 属性管理 + 序列化</span><br>
+│   ├── DiceSystem.h/.cpp      <span style="color:#888">— D100 骰子判定</span><br>
+│   ├── SaveManager.h/.cpp     <span style="color:#888">— JSON 存档（保持现有逻辑，适配新格式）</span><br>
+│   └── MusicPlayer.h/.cpp     <span style="color:#888">— 音乐管理（基本不变）</span><br>
+├── <span style="color:#888">ui/</span>                        <span style="color:#888">— 通用UI层</span><br>
+│   ├── MainWindow.h/.cpp      <span style="color:#888">— 路由控制（适配DlcManager获取DLC列表）</span><br>
+│   ├── MenuWidget.h/.cpp      <span style="color:#888">— DLC选择菜单 + 角色创建</span><br>
+│   ├── GameWidget.h/.cpp      <span style="color:#888">— 核心游戏界面（不变）</span><br>
+│   ├── CharacterCreateWidget  <span style="color:#888">— 动态职业选择（从DLC读取职业列表）</span><br>
+│   └── SaveLoadDialog.h/.cpp  <span style="color:#888">— 存档管理（不变）</span><br>
+├── <span style="color:#888">dlc/</span>                        <span style="color:#4a4"><strong>← 🔑 创作者唯一关心的目录</strong></span><br>
+│   ├── third_reich/           <span style="color:#888">— 官方DLC：第三帝国（现有内容 JSON 化）</span><br>
+│   │   ├── manifest.json<br>
+│   │   ├── chapters/<br>
+│   │   │   ├── ch01_fall_gelb.json<br>
+│   │   │   ├── ch02_britain.json<br>
+│   │   │   ├── ch03_wolf_pack.json<br>
+│   │   │   ├── ch04_stalingrad.json<br>
+│   │   │   └── ch05_berlin.json<br>
+│   │   └── music/<br>
+│   └── <span style="color:#e6db74">your_custom_dlc/</span>      <span style="color:#888">— 第三方DLC示例位置</span><br>
+│       ├── manifest.json<br>
+│       ├── chapters/<br>
+│       └── music/<br>
+└── <span style="color:#888">resources/</span>                <span style="color:#888">— 引擎通用资源</span><br>
+    ├── resources.qrc<br>
+    └── style.qss
+  </div>
+</div>
+
+<h3 style="margin-top:32px">🖥️ UI 适配要点</h3>
+
+<table style="width:100%; border-collapse:collapse; font-size:13px; margin-top:12px">
+  <tr style="background:#222">
+    <th style="padding:10px;border:1px solid #444">界面</th>
+    <th style="padding:10px;border:1px solid #444">当前行为</th>
+    <th style="padding:10px;border:1px solid #444">改造后行为</th>
+  </tr>
+  <tr>
+    <td style="padding:10px;border:1px solid #333"><strong>主菜单</strong></td>
+    <td style="padding:10px;border:1px solid #333">"新游戏"→ 直接创建角色</td>
+    <td style="padding:10px;border:1px solid #333"><strong>新增"选择DLC"步骤</strong>：先选DLC → 再创建角色（职业列表来自该DLC）</td>
+  </tr>
+  <tr>
+    <td style="padding:10px;border:1px solid #333"><strong>角色创建</strong></td>
+    <td style="padding:10px;border:1px solid #333">6个固定职业按钮</td>
+    <td style="padding:10px;border:1px solid #333"><strong>动态生成</strong>：根据DLC manifest.classes[] 生成对应数量的职业卡片</td>
+  </tr>
+  <tr>
+    <td style="padding:10px;border:1px solid #333"><strong>场景选择</strong></td>
+    <td style="padding:10px;border:1px solid #333">ScenarioId枚举的5个场景</td>
+    <td style="padding:10px;border:1px solid #333"><strong>不再需要</strong>：章节解锁由 DLC JSON 中 unlock 字段控制，线性推进（后续可扩展分支）</td>
+  </tr>
+  <tr>
+    <td style="padding:10px;border:1px solid #333"><strong>游戏界面</strong></td>
+    <td style="padding:10px;border:1px solid #333">从scenarios/枚举获取节点</td>
+    <td style="padding:10px;border:1px solid #333">从 NodeEngine 获取节点，NodeEngine 从 DLC JSON 加载</td>
+  </tr>
+  <tr>
+    <td style="padding:10px;border:1px solid #333"><strong>存档界面</strong></td>
+    <td style="padding:10px;border:1px solid #333">保存 Player 对象</td>
+    <td style="padding:10px;border:1px solid #333">保存 PlayerSystem 状态 + <strong>dlcId 字段</strong>（知道该存档属于哪个DLC）</td>
+  </tr>
+</table>
+
+<h3 style="margin-top:32px">🎯 创作者工作流</h3>
+
+<div style="background:#111;border-radius:8px;padding:20px;margin-top:12px;font-size:13px;line-height:2;text-align:left">
+  <strong style="color:#a6e22e">1.</strong> 在 dlc/ 下新建文件夹，命名如 <code>dlc/three_kingdoms/</code><br>
+  <strong style="color:#a6e22e">2.</strong> 编写 <code>manifest.json</code>（复制官方示例改）<br>
+  <strong style="color:#a6e22e">3.</strong> 在 chapters/ 下编写各章节 JSON（复制官方示例改）<br>
+  <strong style="color:#a6e22e">4.</strong> 放入 music/ 音频文件<br>
+  <strong style="color:#a6e22e">5.</strong> 启动游戏 → 引擎自动扫描加载 → 即可在菜单中看到新 DLC<br>
+  <br>
+  <span style="color:#888">✅ 零编译，零C++知识，只需文本编辑器 + 参考文档</span>
+</div>

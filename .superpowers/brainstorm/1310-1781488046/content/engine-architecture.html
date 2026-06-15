@@ -1,0 +1,112 @@
+<h2>第一节：引擎模块架构</h2>
+<p class="subtitle">改造后的 C++ 引擎由 5 个独立模块组成</p>
+
+<div style="margin: 32px 0; background: #1a1a2e; border: 1px solid #333; border-radius: 12px; padding: 32px; font-family: monospace; font-size: 13px; line-height: 2; text-align: left;">
+  <span style="color: #f92672">┌─────────────────────────────────────────────────┐</span><br>
+  <span style="color: #f92672">│</span>  <span style="color: #e6db74">main.cpp</span> — 应用入口，创建 MainWindow            <span style="color: #f92672">│</span><br>
+  <span style="color: #f92672">└────────────────────┬────────────────────────────┘</span><br>
+  <span style="color: #f92672">                     │</span><br>
+  <span style="color: #f92672">    ┌────────────────┴────────────────────┐</span><br>
+  <span style="color: #f92672">    │</span>  <span style="color: #66d9ef">MainWindow</span> (UI路由)                   <span style="color: #f92672">│</span><br>
+  <span style="color: #f92672">    └────┬────────┬────────┬────────┬─────┘</span><br>
+  <span style="color: #f92672">         │        │        │        │</span><br>
+  <span style="color: #f92672">    ┌────▼──┐ ┌───▼────┐ ┌▼────┐ ┌─▼──────┐</span><br>
+  <span style="color: #f92672">    │</span><span style="color: #a6e22e"> DLC   </span><span style="color: #f92672">│ │</span><span style="color: #a6e22e"> Node   </span><span style="color: #f92672">│ │</span><span style="color: #a6e22e">Player</span><span style="color: #f92672">│ │</span><span style="color: #a6e22e"> Dice  </span><span style="color: #f92672">│</span><br>
+  <span style="color: #f92672">    │</span><span style="color: #a6e22e">Manager</span><span style="color: #f92672">│ │</span><span style="color: #a6e22e">Engine </span><span style="color: #f92672">│ │</span><span style="color: #a6e22e">System </span><span style="color: #f92672">│ │</span><span style="color: #a6e22e">System </span><span style="color: #f92672">│</span><br>
+  <span style="color: #f92672">    └───┬───┘ └───┬────┘ └──┬───┘ └──┬──────┘</span><br>
+  <span style="color: #f92672">         │        │        │        │</span><br>
+  <span style="color: #f92672">    ┌────▼────────▼───┐    │    ┌───▼──────┐</span><br>
+  <span style="color: #f92672">    │</span>  <span style="color: #a6e22e">SaveManager</span>     <span style="color: #f92672">│    │    │</span> <span style="color: #a6e22e">MusicPlayer</span> <span style="color: #f92672">│</span><br>
+  <span style="color: #f92672">    │</span>  <span style="color: #888">(JSON存档)</span>      <span style="color: #f92672">│    │    │</span> <span style="color: #888">(BGM管理)</span>   <span style="color: #f92672">│</span><br>
+  <span style="color: #f92672">    └─────────────────┘    │    └────────────┘</span><br>
+  <span style="color: #f92672">                            │</span><br>
+  <span style="color: #f92672">                    ┌───────▼──────────┐</span><br>
+  <span style="color: #f92672">                    │  dlc/ 目录        │</span><br>
+  <span style="color: #f92672">                    │  (文件系统)       │</span><br>
+  <span style="color: #f92672">                    └──────────────────┘</span>
+</div>
+
+<div class="split">
+  <div class="mockup">
+    <div class="mockup-header">🧩 DlcManager</div>
+    <div class="mockup-body" style="font-size:13px;line-height:1.6;text-align:left">
+      <strong>职责：</strong>扫描 + 加载 + 校验 DLC<br>
+      • 启动时扫描 dlc/ 目录<br>
+      • 解析每个 DLC 的 manifest.json<br>
+      • 校验 JSON 合法性<br>
+      • 提供已加载的 DLC 列表给 UI<br>
+      • <strong>与原模块对应：</strong><br>
+      <span style="color:#888">← 替代 registerScenarios()</span><br>
+      <span style="color:#888">← 替代 ScenarioId 枚举</span>
+    </div>
+  </div>
+  <div class="mockup">
+    <div class="mockup-header">🧩 NodeEngine</div>
+    <div class="mockup-body" style="font-size:13px;line-height:1.6;text-align:left">
+      <strong>职责：</strong>故事节点导航 + 选择执行<br>
+      • 当前节点定位<br>
+      • 执行 Choice（骰子/叙事/分支）<br>
+      • 章节间跳转<br>
+      • 标志位检查<br>
+      • <strong>与原模块对应：</strong><br>
+      <span style="color:#888">← GameEngine 的场景导航部分</span><br>
+      <span style="color:#888">← StoryNode/Choice 数据结构保留</span>
+    </div>
+  </div>
+</div>
+
+<div class="split">
+  <div class="mockup">
+    <div class="mockup-header">🧩 PlayerSystem</div>
+    <div class="mockup-body" style="font-size:13px;line-height:1.6;text-align:left">
+      <strong>职责：</strong>动态职业 + 属性管理<br>
+      • 从 DLC manifest 读职业定义<br>
+      • 属性 HP/士气/etc<br>
+      • 标志位集合<br>
+      • 存档序列化<br>
+      • <strong>与原模块对应：</strong><br>
+      <span style="color:#888">← Player 类重构为动态职业</span><br>
+      <span style="color:#888">← PlayerClass 枚举移除</span>
+    </div>
+  </div>
+  <div class="mockup">
+    <div class="mockup-header">🧩 DiceSystem</div>
+    <div class="mockup-body" style="font-size:13px;line-height:1.6;text-align:left">
+      <strong>职责：</strong>骰子判定（无变化）<br>
+      • D100 随机数<br>
+      • 职业加成判定<br>
+      • 阈值比较<br>
+      • <strong>与原模块对应：</strong><br>
+      <span style="color:#888">← GameEngine::rollDice()</span>
+    </div>
+  </div>
+</div>
+
+<h3 style="margin-top:32px">关键变化</h3>
+
+<table style="width:100%; border-collapse:collapse; font-size:14px; margin-top:16px">
+  <tr style="background:#222">
+    <th style="padding:10px;text-align:left;border:1px solid #444">旧结构</th>
+    <th style="padding:10px;text-align:left;border:1px solid #444">新结构</th>
+  </tr>
+  <tr>
+    <td style="padding:10px;border:1px solid #333"><code>PlayerClass</code> 枚举 - 6个固定职业</td>
+    <td style="padding:10px;border:1px solid #333"><code>DlcClass</code> 结构体 - DLC的JSON定义，包含 id/name/bonusType</td>
+  </tr>
+  <tr>
+    <td style="padding:10px;border:1px solid #333"><code>ScenarioId</code> 枚举 - 5个固定场景</td>
+    <td style="padding:10px;border:1px solid #333"><code>DlcManifest</code> - DLC元数据对象，包含多个Chapter</td>
+  </tr>
+  <tr>
+    <td style="padding:10px;border:1px solid #333"><code>registerScenarios()</code> 硬编码注册</td>
+    <td style="padding:10px;border:1px solid #333"><code>DlcManager::scanDirectory()</code> 自动扫描</td>
+  </tr>
+  <tr>
+    <td style="padding:10px;border:1px solid #333">场景 C++ 类 (ScenarioBase 子类)</td>
+    <td style="padding:10px;border:1px solid #333">Chapter JSON 文件 (DlcChapter 运行时对象)</td>
+  </tr>
+  <tr>
+    <td style="padding:10px;border:1px solid #333"><code>classAllowedInScenario()</code> 硬编码映射</td>
+    <td style="padding:10px;border:1px solid #333">DLC JSON 中 <code>classRestricted</code> 字段 + <code>allowedClasses</code></td>
+  </tr>
+</table>

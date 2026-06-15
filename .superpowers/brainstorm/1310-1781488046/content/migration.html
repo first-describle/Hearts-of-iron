@@ -1,0 +1,86 @@
+<h2>第三节：现有场景迁移 + 档案适配</h2>
+<p class="subtitle">5个C++场景 → JSON DLC + 存档格式升级</p>
+
+<h3>🔄 迁移策略</h3>
+
+<div class="split">
+  <div class="mockup">
+    <div class="mockup-header">删除的代码</div>
+    <div class="mockup-body" style="font-size:13px;line-height:1.8;text-align:left">
+      ❌ <code>scenarios/</code> 整个目录 (5个C++类)<br>
+      ❌ <code>GameState.h</code> 中的枚举:<br>
+      &nbsp;&nbsp;&nbsp;<code>PlayerClass</code><br>
+      &nbsp;&nbsp;&nbsp;<code>ScenarioId</code><br>
+      &nbsp;&nbsp;&nbsp;<code>ScenarioIdHash</code><br>
+      ❌ 4 个辅助函数:<br>
+      &nbsp;&nbsp;&nbsp;<code>playerClassName()</code><br>
+      &nbsp;&nbsp;&nbsp;<code>scenarioName()</code><br>
+      &nbsp;&nbsp;&nbsp;<code>scenarioYear()</code><br>
+      &nbsp;&nbsp;&nbsp;<code>classAllowedInScenario()</code><br>
+      ❌ <code>GameEngine::registerScenarios()</code><br>
+      ❌ <code>ScenarioBase.h/.cpp</code> (被NodeEngine替代)
+    </div>
+  </div>
+  <div class="mockup">
+    <div class="mockup-header">新增的代码</div>
+    <div class="mockup-body" style="font-size:13px;line-height:1.8;text-align:left">
+      ✅ <code>engine/DlcManager.h/.cpp</code><br>
+      ✅ <code>engine/NodeEngine.h/.cpp</code><br>
+      ✅ <code>engine/PlayerSystem.h/.cpp</code><br>
+      ✅ <code>engine/DiceSystem.h/.cpp</code><br>
+      ✅ <code>engine/DlcTypes.h</code> (新的数据结构)<br>
+      ✅ <code>dlc/third_reich/</code> (转换为JSON的官方DLC)<br>
+      &nbsp;&nbsp;&nbsp;├── manifest.json<br>
+      &nbsp;&nbsp;&nbsp;├── chapters/ (5个JSON文件)<br>
+      &nbsp;&nbsp;&nbsp;└── music/ (复制现有资源)
+    </div>
+  </div>
+</div>
+
+<h3 style="margin-top:32px">💾 存档格式变化</h3>
+
+<div class="split">
+  <div>
+    <div class="label">旧存档 (当前)</div>
+    <div class="mockup">
+      <div class="mockup-body" style="text-align:left;font-size:12px">
+<pre style="background:#111;color:#e6db74;padding:12px;border-radius:6px;line-height:1.5;overflow-x:auto">
+{
+  <span style="color:#e6db74">"name"</span>: <span style="color:#e6db74">"汉斯"</span>,
+  <span style="color:#e6db74">"playerClass"</span>: <span style="color:#66d9ef">0</span>,     <span style="color:#888">← 枚举int值</span>
+  <span style="color:#e6db74">"hp"</span>: <span style="color:#66d9ef">80</span>,
+  <span style="color:#e6db74">"currentScenario"</span>: <span style="color:#66d9ef">3</span>,  <span style="color:#888">← 枚举int值</span>
+  <span style="color:#e6db74">"currentNodeId"</span>: <span style="color:#e6db74">"xx"</span>,
+  <span style="color:#e6db74">"flags"</span>: [<span style="color:#e6db74">"saved_boy"</span>],
+  <span style="color:#e6db74">"unlockedScenarios"</span>: [<span style="color:#66d9ef">0</span>,<span style="color:#66d9ef">1</span>,<span style="color:#66d9ef">2</span>]
+}
+</pre>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="label">新存档 (改造后)</div>
+    <div class="mockup">
+      <div class="mockup-body" style="text-align:left;font-size:12px">
+<pre style="background:#111;color:#e6db74;padding:12px;border-radius:6px;line-height:1.5;overflow-x:auto">
+{
+  <span style="color:#e6db74">"engineVersion"</span>: <span style="color:#e6db74">"2.0"</span>,
+  <span style="color:#e6db74">"dlcId"</span>: <span style="color:#e6db74">"third_reich"</span>,
+  <span style="color:#e6db74">"playerName"</span>: <span style="color:#e6db74">"汉斯"</span>,
+  <span style="color:#f92672">"playerClass"</span>: <span style="color:#e6db74">"infantry"</span>, <span style="color:#888">← 字符串ID</span>
+  <span style="color:#e6db74">"hp"</span>: <span style="color:#66d9ef">80</span>,
+  <span style="color:#e6db74">"morale"</span>: <span style="color:#66d9ef">65</span>,
+  <span style="color:#f92672">"currentChapter"</span>: <span style="color:#e6db74">"stalingrad"</span>,
+  <span style="color:#f92672">"currentNodeId"</span>: <span style="color:#e6db74">"st_choice_5"</span>,
+  <span style="color:#f92672">"unlockedChapters"</span>: [<span style="color:#e6db74">"fall_gelb"</span>,<span style="color:#e6db74">"britain"</span>,<span style="color:#e6db74">"wolf_pack"</span>,<span style="color:#e6db74">"stalingrad"</span>],
+  <span style="color:#e6db74">"flags"</span>: [<span style="color:#e6db74">"saved_boy"</span>, <span style="color:#e6db74">"chose_west"</span>]
+}
+</pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p style="margin-top:16px;font-size:13px;color:#888">
+⚠️ 新存档不兼容旧存档。引擎启动时检测到旧格式会提示用户。旧版本存档 <strong>被标记为 legacy，不自动迁移</strong>（因为数据格式语义完全不同）。
+</p>

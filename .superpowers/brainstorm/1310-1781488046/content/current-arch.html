@@ -1,0 +1,45 @@
+<h2>当前项目架构</h2>
+<p class="subtitle">钢铁意志：第三帝国 — 现状分析</p>
+
+<div class="split">
+  <div class="mockup">
+    <div class="mockup-header">📁 项目结构</div>
+    <div class="mockup-body" style="font-family: monospace; font-size: 13px; line-height: 1.8; text-align: left;">
+      <strong>core/</strong> — 核心引擎<br>
+      ├── GameState.h  &nbsp;<span style="color:#888">枚举(职业/场景全硬编码)</span><br>
+      ├── StoryNode.h  &nbsp;<span style="color:#888">故事节点+选项结构</span><br>
+      ├── Player.h/.cpp   &nbsp;<span style="color:#888">玩家数据模型</span><br>
+      ├── GameEngine.h/.cpp &nbsp;<span style="color:#888">核心逻辑(硬编码注册场景)</span><br>
+      ├── ScenarioBase.h/.cpp &nbsp;<span style="color:#888">场景抽象基类</span><br>
+      ├── SaveManager.h/.cpp<br>
+      └── MusicPlayer.h/.cpp<br><br>
+      <strong>scenarios/</strong> — 5个战役<br>
+      ├── FallGelbScenario.h/.cpp<br>
+      ├── BritainScenario.h/.cpp<br>
+      ├── WolfPackScenario.h/.cpp<br>
+      ├── StalingradScenario.h/.cpp<br>
+      └── BerlinScenario.h/.cpp<br><br>
+      <strong>ui/</strong> — Qt Widgets界面<br>
+      <strong>main.cpp</strong> — QApplication入口
+    </div>
+  </div>
+  <div class="mockup">
+    <div class="mockup-header">⚠️ 当前问题（阻碍"共创"的点）</div>
+    <div class="mockup-body" style="font-size: 14px; line-height: 1.8; text-align: left;">
+      <strong>1. 场景硬编码</strong><br>
+      <span style="color:#c44">ScenarioId 枚举直接定义在 GameState.h</span><br>
+      新增场景需要修改引擎源码<br><br>
+      <strong>2. 职业硬编码</strong><br>
+      <span style="color:#c44">PlayerClass 枚举写死6种职业</span><br>
+      DLC无法自定义职业<br><br>
+      <strong>3. 职业-场景绑定耦合</strong><br>
+      <span style="color:#c44">classAllowedInScenario() 硬编码</span><br>
+      <br><strong>4. 场景在 C++ 编译期注册</strong><br>
+      <span style="color:#c44">registerScenarios() 直接 new 5个类</span><br>
+      <br><strong>5. 无插件/扩展加载机制</strong><br>
+      <span style="color:#c44">无法从外部文件动态加载内容</span>
+    </div>
+  </div>
+</div>
+
+<h3 style="margin-top: 32px;">核心问题：如果你想让人写 DLC，对方需要懂 C++/Qt 并重新编译整个项目</h3>

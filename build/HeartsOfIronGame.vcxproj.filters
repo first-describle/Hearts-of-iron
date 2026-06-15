@@ -7,34 +7,22 @@
     <ClCompile Include="D:\Creater\Hearts of iron\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Creater\Hearts of iron\core\Player.cpp">
+    <ClCompile Include="D:\Creater\Hearts of iron\engine\PlayerSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Creater\Hearts of iron\core\GameEngine.cpp">
+    <ClCompile Include="D:\Creater\Hearts of iron\engine\DiceSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Creater\Hearts of iron\core\SaveManager.cpp">
+    <ClCompile Include="D:\Creater\Hearts of iron\engine\DlcManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Creater\Hearts of iron\core\MusicPlayer.cpp">
+    <ClCompile Include="D:\Creater\Hearts of iron\engine\NodeEngine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Creater\Hearts of iron\core\ScenarioBase.cpp">
+    <ClCompile Include="D:\Creater\Hearts of iron\engine\SaveManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Creater\Hearts of iron\scenarios\FallGelbScenario.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="D:\Creater\Hearts of iron\scenarios\BritainScenario.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="D:\Creater\Hearts of iron\scenarios\WolfPackScenario.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="D:\Creater\Hearts of iron\scenarios\StalingradScenario.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="D:\Creater\Hearts of iron\scenarios\BerlinScenario.cpp">
+    <ClCompile Include="D:\Creater\Hearts of iron\engine\MusicPlayer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="D:\Creater\Hearts of iron\ui\MainWindow.cpp">
@@ -66,40 +54,25 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="D:\Creater\Hearts of iron\core\GameState.h">
+    <ClInclude Include="D:\Creater\Hearts of iron\engine\DlcTypes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Creater\Hearts of iron\core\StoryNode.h">
+    <ClInclude Include="D:\Creater\Hearts of iron\engine\PlayerSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Creater\Hearts of iron\core\Player.h">
+    <ClInclude Include="D:\Creater\Hearts of iron\engine\DiceSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Creater\Hearts of iron\core\GameEngine.h">
+    <ClInclude Include="D:\Creater\Hearts of iron\engine\DlcManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Creater\Hearts of iron\core\SaveManager.h">
+    <ClInclude Include="D:\Creater\Hearts of iron\engine\NodeEngine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Creater\Hearts of iron\core\MusicPlayer.h">
+    <ClInclude Include="D:\Creater\Hearts of iron\engine\SaveManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Creater\Hearts of iron\core\ScenarioBase.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="D:\Creater\Hearts of iron\scenarios\FallGelbScenario.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="D:\Creater\Hearts of iron\scenarios\BritainScenario.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="D:\Creater\Hearts of iron\scenarios\WolfPackScenario.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="D:\Creater\Hearts of iron\scenarios\StalingradScenario.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="D:\Creater\Hearts of iron\scenarios\BerlinScenario.h">
+    <ClInclude Include="D:\Creater\Hearts of iron\engine\MusicPlayer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="D:\Creater\Hearts of iron\ui\MainWindow.h">

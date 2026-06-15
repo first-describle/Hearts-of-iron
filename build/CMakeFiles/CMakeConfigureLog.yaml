@@ -24,7 +24,7 @@ events:
       The output was:
       0
       閫傜敤浜?.NET Framework MSBuild 鐗堟湰 17.14.19+164abd434
-      鐢熸垚鍚姩鏃堕棿涓?2026/6/11 22:55:15銆?
+      鐢熸垚鍚姩鏃堕棿涓?2026/6/15 11:14:20銆?
       
       鑺傜偣 1 涓婄殑椤圭洰鈥淒:\\Creater\\Hearts of iron\\build\\CMakeFiles\\3.28.1\\CompilerIdCXX\\CompilerIdCXX.vcxproj鈥?榛樿鐩爣)銆?
       PrepareForBuild:
@@ -53,7 +53,7 @@ events:
           0 涓鍛?
           0 涓敊璇?
       
-      宸茬敤鏃堕棿 00:00:01.94
+      宸茬敤鏃堕棿 00:00:00.64
       
       
       Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
@@ -72,8 +72,8 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "D:/Creater/Hearts of iron/build/CMakeFiles/CMakeScratch/TryCompile-k0ytof"
-      binary: "D:/Creater/Hearts of iron/build/CMakeFiles/CMakeScratch/TryCompile-k0ytof"
+      source: "D:/Creater/Hearts of iron/build/CMakeFiles/CMakeScratch/TryCompile-ur18ef"
+      binary: "D:/Creater/Hearts of iron/build/CMakeFiles/CMakeScratch/TryCompile-ur18ef"
     cmakeVariables:
       CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /GR /EHsc"
       CMAKE_CXX_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
@@ -82,40 +82,40 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'D:/Creater/Hearts of iron/build/CMakeFiles/CMakeScratch/TryCompile-k0ytof'
+        Change Dir: 'D:/Creater/Hearts of iron/build/CMakeFiles/CMakeScratch/TryCompile-ur18ef'
         
-        Run Build Command(s): D:/vs_2022/MSBuild/Current/Bin/amd64/MSBuild.exe cmTC_618b6.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        Run Build Command(s): D:/vs_2022/MSBuild/Current/Bin/amd64/MSBuild.exe cmTC_49359.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
         閫傜敤浜?.NET Framework MSBuild 鐗堟湰 17.14.19+164abd434
-        鐢熸垚鍚姩鏃堕棿涓?2026/6/11 22:55:17銆?
+        鐢熸垚鍚姩鏃堕棿涓?2026/6/15 11:14:21銆?
         
-        鑺傜偣 1 涓婄殑椤圭洰鈥淒:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-k0ytof\\cmTC_618b6.vcxproj鈥?榛樿鐩爣)銆?
+        鑺傜偣 1 涓婄殑椤圭洰鈥淒:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ur18ef\\cmTC_49359.vcxproj鈥?榛樿鐩爣)銆?
         PrepareForBuild:
-          姝ｅ湪鍒涘缓鐩綍鈥渃mTC_618b6.dir\\Debug\\鈥濄€?
+          姝ｅ湪鍒涘缓鐩綍鈥渃mTC_49359.dir\\Debug\\鈥濄€?
           宸插惎鐢ㄧ粨鏋勫寲杈撳嚭銆傜紪璇戝櫒璇婃柇鐨勬牸寮忚缃皢鍙嶆槧閿欒灞傛缁撴瀯銆傛湁鍏宠缁嗕俊鎭紝璇峰弬闃?https://aka.ms/cpp/structured-output銆?
-          姝ｅ湪鍒涘缓鐩綍鈥淒:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-k0ytof\\Debug\\鈥濄€?
-          姝ｅ湪鍒涘缓鐩綍鈥渃mTC_618b6.dir\\Debug\\cmTC_618b6.tlog\\鈥濄€?
+          姝ｅ湪鍒涘缓鐩綍鈥淒:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ur18ef\\Debug\\鈥濄€?
+          姝ｅ湪鍒涘缓鐩綍鈥渃mTC_49359.dir\\Debug\\cmTC_49359.tlog\\鈥濄€?
         InitializeBuildStatus:
-          姝ｅ湪鍒涘缓鈥渃mTC_618b6.dir\\Debug\\cmTC_618b6.tlog\\unsuccessfulbuild鈥濓紝鍥犱负宸叉寚瀹氣€淎lwaysCreate鈥濄€?
-          姝ｅ湪瀵光€渃mTC_618b6.dir\\Debug\\cmTC_618b6.tlog\\unsuccessfulbuild鈥濇墽琛?Touch 浠诲姟銆?
+          姝ｅ湪鍒涘缓鈥渃mTC_49359.dir\\Debug\\cmTC_49359.tlog\\unsuccessfulbuild鈥濓紝鍥犱负宸叉寚瀹氣€淎lwaysCreate鈥濄€?
+          姝ｅ湪瀵光€渃mTC_49359.dir\\Debug\\cmTC_49359.tlog\\unsuccessfulbuild鈥濇墽琛?Touch 浠诲姟銆?
         ClCompile:
-          D:\\vs_2022\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_618b6.dir\\Debug\\\\" /Fd"cmTC_618b6.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue "C:\\ST\\STM32CubeCLT_1.18.0\\CMake\\share\\cmake-3.28\\Modules\\CMakeCXXCompilerABI.cpp"
+          D:\\vs_2022\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_49359.dir\\Debug\\\\" /Fd"cmTC_49359.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue "C:\\ST\\STM32CubeCLT_1.18.0\\CMake\\share\\cmake-3.28\\Modules\\CMakeCXXCompilerABI.cpp"
           鐢ㄤ簬 x64 鐨?Microsoft (R) C/C++ 浼樺寲缂栬瘧鍣?19.44.35215 鐗?
           鐗堟潈鎵€鏈?C) Microsoft Corporation銆備繚鐣欐墍鏈夋潈鍒┿€?
-          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_618b6.dir\\Debug\\\\" /Fd"cmTC_618b6.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue "C:\\ST\\STM32CubeCLT_1.18.0\\CMake\\share\\cmake-3.28\\Modules\\CMakeCXXCompilerABI.cpp"
+          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_49359.dir\\Debug\\\\" /Fd"cmTC_49359.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue "C:\\ST\\STM32CubeCLT_1.18.0\\CMake\\share\\cmake-3.28\\Modules\\CMakeCXXCompilerABI.cpp"
           CMakeCXXCompilerABI.cpp
         Link:
-          D:\\vs_2022\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"D:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-k0ytof\\Debug\\cmTC_618b6.exe" /INCREMENTAL /ILK:"cmTC_618b6.dir\\Debug\\cmTC_618b6.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:/Creater/Hearts of iron/build/CMakeFiles/CMakeScratch/TryCompile-k0ytof/Debug/cmTC_618b6.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:/Creater/Hearts of iron/build/CMakeFiles/CMakeScratch/TryCompile-k0ytof/Debug/cmTC_618b6.lib" /MACHINE:X64  /machine:x64 cmTC_618b6.dir\\Debug\\CMakeCXXCompilerABI.obj
-          cmTC_618b6.vcxproj -> D:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-k0ytof\\Debug\\cmTC_618b6.exe
+          D:\\vs_2022\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"D:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ur18ef\\Debug\\cmTC_49359.exe" /INCREMENTAL /ILK:"cmTC_49359.dir\\Debug\\cmTC_49359.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:/Creater/Hearts of iron/build/CMakeFiles/CMakeScratch/TryCompile-ur18ef/Debug/cmTC_49359.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:/Creater/Hearts of iron/build/CMakeFiles/CMakeScratch/TryCompile-ur18ef/Debug/cmTC_49359.lib" /MACHINE:X64  /machine:x64 cmTC_49359.dir\\Debug\\CMakeCXXCompilerABI.obj
+          cmTC_49359.vcxproj -> D:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ur18ef\\Debug\\cmTC_49359.exe
         FinalizeBuildStatus:
-          姝ｅ湪鍒犻櫎鏂囦欢鈥渃mTC_618b6.dir\\Debug\\cmTC_618b6.tlog\\unsuccessfulbuild鈥濄€?
-          姝ｅ湪瀵光€渃mTC_618b6.dir\\Debug\\cmTC_618b6.tlog\\cmTC_618b6.lastbuildstate鈥濇墽琛?Touch 浠诲姟銆?
-        宸插畬鎴愮敓鎴愰」鐩€淒:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-k0ytof\\cmTC_618b6.vcxproj鈥?榛樿鐩爣)鐨勬搷浣溿€?
+          姝ｅ湪鍒犻櫎鏂囦欢鈥渃mTC_49359.dir\\Debug\\cmTC_49359.tlog\\unsuccessfulbuild鈥濄€?
+          姝ｅ湪瀵光€渃mTC_49359.dir\\Debug\\cmTC_49359.tlog\\cmTC_49359.lastbuildstate鈥濇墽琛?Touch 浠诲姟銆?
+        宸插畬鎴愮敓鎴愰」鐩€淒:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ur18ef\\cmTC_49359.vcxproj鈥?榛樿鐩爣)鐨勬搷浣溿€?
         
         宸叉垚鍔熺敓鎴愩€?
             0 涓鍛?
             0 涓敊璇?
         
-        宸茬敤鏃堕棿 00:00:00.65
+        宸茬敤鏃堕棿 00:00:00.67
         
       exitCode: 0
   -
@@ -133,8 +133,8 @@ events:
     checks:
       - "Performing Test CMAKE_HAVE_LIBC_PTHREAD"
     directories:
-      source: "D:/Creater/Hearts of iron/build/CMakeFiles/CMakeScratch/TryCompile-xswltz"
-      binary: "D:/Creater/Hearts of iron/build/CMakeFiles/CMakeScratch/TryCompile-xswltz"
+      source: "D:/Creater/Hearts of iron/build/CMakeFiles/CMakeScratch/TryCompile-umda4e"
+      binary: "D:/Creater/Hearts of iron/build/CMakeFiles/CMakeScratch/TryCompile-umda4e"
     cmakeVariables:
       CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /GR /EHsc"
       CMAKE_CXX_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
@@ -144,40 +144,40 @@ events:
       variable: "CMAKE_HAVE_LIBC_PTHREAD"
       cached: true
       stdout: |
-        Change Dir: 'D:/Creater/Hearts of iron/build/CMakeFiles/CMakeScratch/TryCompile-xswltz'
+        Change Dir: 'D:/Creater/Hearts of iron/build/CMakeFiles/CMakeScratch/TryCompile-umda4e'
         
-        Run Build Command(s): D:/vs_2022/MSBuild/Current/Bin/amd64/MSBuild.exe cmTC_facc6.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        Run Build Command(s): D:/vs_2022/MSBuild/Current/Bin/amd64/MSBuild.exe cmTC_82968.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
         閫傜敤浜?.NET Framework MSBuild 鐗堟湰 17.14.19+164abd434
-        鐢熸垚鍚姩鏃堕棿涓?2026/6/11 22:55:19銆?
+        鐢熸垚鍚姩鏃堕棿涓?2026/6/15 11:14:22銆?
         
-        鑺傜偣 1 涓婄殑椤圭洰鈥淒:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-xswltz\\cmTC_facc6.vcxproj鈥?榛樿鐩爣)銆?
+        鑺傜偣 1 涓婄殑椤圭洰鈥淒:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-umda4e\\cmTC_82968.vcxproj鈥?榛樿鐩爣)銆?
         PrepareForBuild:
-          姝ｅ湪鍒涘缓鐩綍鈥渃mTC_facc6.dir\\Debug\\鈥濄€?
+          姝ｅ湪鍒涘缓鐩綍鈥渃mTC_82968.dir\\Debug\\鈥濄€?
           宸插惎鐢ㄧ粨鏋勫寲杈撳嚭銆傜紪璇戝櫒璇婃柇鐨勬牸寮忚缃皢鍙嶆槧閿欒灞傛缁撴瀯銆傛湁鍏宠缁嗕俊鎭紝璇峰弬闃?https://aka.ms/cpp/structured-output銆?
-          姝ｅ湪鍒涘缓鐩綍鈥淒:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-xswltz\\Debug\\鈥濄€?
-          姝ｅ湪鍒涘缓鐩綍鈥渃mTC_facc6.dir\\Debug\\cmTC_facc6.tlog\\鈥濄€?
+          姝ｅ湪鍒涘缓鐩綍鈥淒:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-umda4e\\Debug\\鈥濄€?
+          姝ｅ湪鍒涘缓鐩綍鈥渃mTC_82968.dir\\Debug\\cmTC_82968.tlog\\鈥濄€?
         InitializeBuildStatus:
-          姝ｅ湪鍒涘缓鈥渃mTC_facc6.dir\\Debug\\cmTC_facc6.tlog\\unsuccessfulbuild鈥濓紝鍥犱负宸叉寚瀹氣€淎lwaysCreate鈥濄€?
-          姝ｅ湪瀵光€渃mTC_facc6.dir\\Debug\\cmTC_facc6.tlog\\unsuccessfulbuild鈥濇墽琛?Touch 浠诲姟銆?
+          姝ｅ湪鍒涘缓鈥渃mTC_82968.dir\\Debug\\cmTC_82968.tlog\\unsuccessfulbuild鈥濓紝鍥犱负宸叉寚瀹氣€淎lwaysCreate鈥濄€?
+          姝ｅ湪瀵光€渃mTC_82968.dir\\Debug\\cmTC_82968.tlog\\unsuccessfulbuild鈥濇墽琛?Touch 浠诲姟銆?
         ClCompile:
-          D:\\vs_2022\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CMAKE_HAVE_LIBC_PTHREAD /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /std:c++17 /Fo"cmTC_facc6.dir\\Debug\\\\" /Fd"cmTC_facc6.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue "D:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-xswltz\\src.cxx"
+          D:\\vs_2022\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CMAKE_HAVE_LIBC_PTHREAD /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /std:c++17 /Fo"cmTC_82968.dir\\Debug\\\\" /Fd"cmTC_82968.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue "D:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-umda4e\\src.cxx"
           鐢ㄤ簬 x64 鐨?Microsoft (R) C/C++ 浼樺寲缂栬瘧鍣?19.44.35215 鐗?
           鐗堟潈鎵€鏈?C) Microsoft Corporation銆備繚鐣欐墍鏈夋潈鍒┿€?
-          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CMAKE_HAVE_LIBC_PTHREAD /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /std:c++17 /Fo"cmTC_facc6.dir\\Debug\\\\" /Fd"cmTC_facc6.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue "D:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-xswltz\\src.cxx"
+          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CMAKE_HAVE_LIBC_PTHREAD /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /std:c++17 /Fo"cmTC_82968.dir\\Debug\\\\" /Fd"cmTC_82968.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue "D:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-umda4e\\src.cxx"
           src.cxx
-        D:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-xswltz\\src.cxx(1,10): error C1083: 鏃犳硶鎵撳紑鍖呮嫭鏂囦欢: 鈥減thread.h鈥? No such file or directory [D:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-xswltz\\cmTC_facc6.vcxproj]
-        宸插畬鎴愮敓鎴愰」鐩€淒:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-xswltz\\cmTC_facc6.vcxproj鈥?榛樿鐩爣)鐨勬搷浣?- 澶辫触銆?
+        D:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-umda4e\\src.cxx(1,10): error C1083: 鏃犳硶鎵撳紑鍖呮嫭鏂囦欢: 鈥減thread.h鈥? No such file or directory [D:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-umda4e\\cmTC_82968.vcxproj]
+        宸插畬鎴愮敓鎴愰」鐩€淒:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-umda4e\\cmTC_82968.vcxproj鈥?榛樿鐩爣)鐨勬搷浣?- 澶辫触銆?
         
         鐢熸垚澶辫触銆?
         
-        鈥淒:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-xswltz\\cmTC_facc6.vcxproj鈥?榛樿鐩爣) (1) ->
+        鈥淒:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-umda4e\\cmTC_82968.vcxproj鈥?榛樿鐩爣) (1) ->
         (ClCompile 鐩爣) -> 
-          D:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-xswltz\\src.cxx(1,10): error C1083: 鏃犳硶鎵撳紑鍖呮嫭鏂囦欢: 鈥減thread.h鈥? No such file or directory [D:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-xswltz\\cmTC_facc6.vcxproj]
+          D:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-umda4e\\src.cxx(1,10): error C1083: 鏃犳硶鎵撳紑鍖呮嫭鏂囦欢: 鈥減thread.h鈥? No such file or directory [D:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-umda4e\\cmTC_82968.vcxproj]
         
             0 涓鍛?
             1 涓敊璇?
         
-        宸茬敤鏃堕棿 00:00:00.45
+        宸茬敤鏃堕棿 00:00:00.33
         
       exitCode: 1
   -
@@ -194,8 +194,8 @@ events:
     checks:
       - "Looking for pthread_create in pthreads"
     directories:
-      source: "D:/Creater/Hearts of iron/build/CMakeFiles/CMakeScratch/TryCompile-d5a0t8"
-      binary: "D:/Creater/Hearts of iron/build/CMakeFiles/CMakeScratch/TryCompile-d5a0t8"
+      source: "D:/Creater/Hearts of iron/build/CMakeFiles/CMakeScratch/TryCompile-1j87o4"
+      binary: "D:/Creater/Hearts of iron/build/CMakeFiles/CMakeScratch/TryCompile-1j87o4"
     cmakeVariables:
       CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /GR /EHsc"
       CMAKE_CXX_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
@@ -205,42 +205,42 @@ events:
       variable: "CMAKE_HAVE_PTHREADS_CREATE"
       cached: true
       stdout: |
-        Change Dir: 'D:/Creater/Hearts of iron/build/CMakeFiles/CMakeScratch/TryCompile-d5a0t8'
+        Change Dir: 'D:/Creater/Hearts of iron/build/CMakeFiles/CMakeScratch/TryCompile-1j87o4'
         
-        Run Build Command(s): D:/vs_2022/MSBuild/Current/Bin/amd64/MSBuild.exe cmTC_8080b.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        Run Build Command(s): D:/vs_2022/MSBuild/Current/Bin/amd64/MSBuild.exe cmTC_fdbc6.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
         閫傜敤浜?.NET Framework MSBuild 鐗堟湰 17.14.19+164abd434
-        鐢熸垚鍚姩鏃堕棿涓?2026/6/11 22:55:20銆?
+        鐢熸垚鍚姩鏃堕棿涓?2026/6/15 11:14:23銆?
         
-        鑺傜偣 1 涓婄殑椤圭洰鈥淒:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-d5a0t8\\cmTC_8080b.vcxproj鈥?榛樿鐩爣)銆?
+        鑺傜偣 1 涓婄殑椤圭洰鈥淒:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-1j87o4\\cmTC_fdbc6.vcxproj鈥?榛樿鐩爣)銆?
         PrepareForBuild:
-          姝ｅ湪鍒涘缓鐩綍鈥渃mTC_8080b.dir\\Debug\\鈥濄€?
+          姝ｅ湪鍒涘缓鐩綍鈥渃mTC_fdbc6.dir\\Debug\\鈥濄€?
           宸插惎鐢ㄧ粨鏋勫寲杈撳嚭銆傜紪璇戝櫒璇婃柇鐨勬牸寮忚缃皢鍙嶆槧閿欒灞傛缁撴瀯銆傛湁鍏宠缁嗕俊鎭紝璇峰弬闃?https://aka.ms/cpp/structured-output銆?
-          姝ｅ湪鍒涘缓鐩綍鈥淒:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-d5a0t8\\Debug\\鈥濄€?
-          姝ｅ湪鍒涘缓鐩綍鈥渃mTC_8080b.dir\\Debug\\cmTC_8080b.tlog\\鈥濄€?
+          姝ｅ湪鍒涘缓鐩綍鈥淒:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-1j87o4\\Debug\\鈥濄€?
+          姝ｅ湪鍒涘缓鐩綍鈥渃mTC_fdbc6.dir\\Debug\\cmTC_fdbc6.tlog\\鈥濄€?
         InitializeBuildStatus:
-          姝ｅ湪鍒涘缓鈥渃mTC_8080b.dir\\Debug\\cmTC_8080b.tlog\\unsuccessfulbuild鈥濓紝鍥犱负宸叉寚瀹氣€淎lwaysCreate鈥濄€?
-          姝ｅ湪瀵光€渃mTC_8080b.dir\\Debug\\cmTC_8080b.tlog\\unsuccessfulbuild鈥濇墽琛?Touch 浠诲姟銆?
+          姝ｅ湪鍒涘缓鈥渃mTC_fdbc6.dir\\Debug\\cmTC_fdbc6.tlog\\unsuccessfulbuild鈥濓紝鍥犱负宸叉寚瀹氣€淎lwaysCreate鈥濄€?
+          姝ｅ湪瀵光€渃mTC_fdbc6.dir\\Debug\\cmTC_fdbc6.tlog\\unsuccessfulbuild鈥濇墽琛?Touch 浠诲姟銆?
         ClCompile:
-          D:\\vs_2022\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /std:c++17 /Fo"cmTC_8080b.dir\\Debug\\\\" /Fd"cmTC_8080b.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue "D:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-d5a0t8\\CheckFunctionExists.cxx"
+          D:\\vs_2022\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /std:c++17 /Fo"cmTC_fdbc6.dir\\Debug\\\\" /Fd"cmTC_fdbc6.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue "D:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-1j87o4\\CheckFunctionExists.cxx"
           鐢ㄤ簬 x64 鐨?Microsoft (R) C/C++ 浼樺寲缂栬瘧鍣?19.44.35215 鐗?
           鐗堟潈鎵€鏈?C) Microsoft Corporation銆備繚鐣欐墍鏈夋潈鍒┿€?
-          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /std:c++17 /Fo"cmTC_8080b.dir\\Debug\\\\" /Fd"cmTC_8080b.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue "D:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-d5a0t8\\CheckFunctionExists.cxx"
+          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /std:c++17 /Fo"cmTC_fdbc6.dir\\Debug\\\\" /Fd"cmTC_fdbc6.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue "D:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-1j87o4\\CheckFunctionExists.cxx"
           CheckFunctionExists.cxx
         Link:
-          D:\\vs_2022\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"D:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-d5a0t8\\Debug\\cmTC_8080b.exe" /INCREMENTAL /ILK:"cmTC_8080b.dir\\Debug\\cmTC_8080b.ilk" /NOLOGO pthreads.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:/Creater/Hearts of iron/build/CMakeFiles/CMakeScratch/TryCompile-d5a0t8/Debug/cmTC_8080b.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:/Creater/Hearts of iron/build/CMakeFiles/CMakeScratch/TryCompile-d5a0t8/Debug/cmTC_8080b.lib" /MACHINE:X64  /machine:x64 cmTC_8080b.dir\\Debug\\CheckFunctionExists.obj
-        LINK : fatal error LNK1104: 鏃犳硶鎵撳紑鏂囦欢鈥減threads.lib鈥?[D:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-d5a0t8\\cmTC_8080b.vcxproj]
-        宸插畬鎴愮敓鎴愰」鐩€淒:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-d5a0t8\\cmTC_8080b.vcxproj鈥?榛樿鐩爣)鐨勬搷浣?- 澶辫触銆?
+          D:\\vs_2022\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"D:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-1j87o4\\Debug\\cmTC_fdbc6.exe" /INCREMENTAL /ILK:"cmTC_fdbc6.dir\\Debug\\cmTC_fdbc6.ilk" /NOLOGO pthreads.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:/Creater/Hearts of iron/build/CMakeFiles/CMakeScratch/TryCompile-1j87o4/Debug/cmTC_fdbc6.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:/Creater/Hearts of iron/build/CMakeFiles/CMakeScratch/TryCompile-1j87o4/Debug/cmTC_fdbc6.lib" /MACHINE:X64  /machine:x64 cmTC_fdbc6.dir\\Debug\\CheckFunctionExists.obj
+        LINK : fatal error LNK1104: 鏃犳硶鎵撳紑鏂囦欢鈥減threads.lib鈥?[D:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-1j87o4\\cmTC_fdbc6.vcxproj]
+        宸插畬鎴愮敓鎴愰」鐩€淒:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-1j87o4\\cmTC_fdbc6.vcxproj鈥?榛樿鐩爣)鐨勬搷浣?- 澶辫触銆?
         
         鐢熸垚澶辫触銆?
         
-        鈥淒:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-d5a0t8\\cmTC_8080b.vcxproj鈥?榛樿鐩爣) (1) ->
+        鈥淒:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-1j87o4\\cmTC_fdbc6.vcxproj鈥?榛樿鐩爣) (1) ->
         (Link 鐩爣) -> 
-          LINK : fatal error LNK1104: 鏃犳硶鎵撳紑鏂囦欢鈥減threads.lib鈥?[D:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-d5a0t8\\cmTC_8080b.vcxproj]
+          LINK : fatal error LNK1104: 鏃犳硶鎵撳紑鏂囦欢鈥減threads.lib鈥?[D:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-1j87o4\\cmTC_fdbc6.vcxproj]
         
             0 涓鍛?
             1 涓敊璇?
         
-        宸茬敤鏃堕棿 00:00:00.45
+        宸茬敤鏃堕棿 00:00:00.47
         
       exitCode: 1
   -
@@ -257,8 +257,8 @@ events:
     checks:
       - "Looking for pthread_create in pthread"
     directories:
-      source: "D:/Creater/Hearts of iron/build/CMakeFiles/CMakeScratch/TryCompile-m0uvij"
-      binary: "D:/Creater/Hearts of iron/build/CMakeFiles/CMakeScratch/TryCompile-m0uvij"
+      source: "D:/Creater/Hearts of iron/build/CMakeFiles/CMakeScratch/TryCompile-npwaef"
+      binary: "D:/Creater/Hearts of iron/build/CMakeFiles/CMakeScratch/TryCompile-npwaef"
     cmakeVariables:
       CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /GR /EHsc"
       CMAKE_CXX_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
@@ -268,42 +268,42 @@ events:
       variable: "CMAKE_HAVE_PTHREAD_CREATE"
       cached: true
       stdout: |
-        Change Dir: 'D:/Creater/Hearts of iron/build/CMakeFiles/CMakeScratch/TryCompile-m0uvij'
+        Change Dir: 'D:/Creater/Hearts of iron/build/CMakeFiles/CMakeScratch/TryCompile-npwaef'
         
-        Run Build Command(s): D:/vs_2022/MSBuild/Current/Bin/amd64/MSBuild.exe cmTC_1dc19.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        Run Build Command(s): D:/vs_2022/MSBuild/Current/Bin/amd64/MSBuild.exe cmTC_0ae37.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
         閫傜敤浜?.NET Framework MSBuild 鐗堟湰 17.14.19+164abd434
-        鐢熸垚鍚姩鏃堕棿涓?2026/6/11 22:55:20銆?
+        鐢熸垚鍚姩鏃堕棿涓?2026/6/15 11:14:23銆?
         
-        鑺傜偣 1 涓婄殑椤圭洰鈥淒:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-m0uvij\\cmTC_1dc19.vcxproj鈥?榛樿鐩爣)銆?
+        鑺傜偣 1 涓婄殑椤圭洰鈥淒:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-npwaef\\cmTC_0ae37.vcxproj鈥?榛樿鐩爣)銆?
         PrepareForBuild:
-          姝ｅ湪鍒涘缓鐩綍鈥渃mTC_1dc19.dir\\Debug\\鈥濄€?
+          姝ｅ湪鍒涘缓鐩綍鈥渃mTC_0ae37.dir\\Debug\\鈥濄€?
           宸插惎鐢ㄧ粨鏋勫寲杈撳嚭銆傜紪璇戝櫒璇婃柇鐨勬牸寮忚缃皢鍙嶆槧閿欒灞傛缁撴瀯銆傛湁鍏宠缁嗕俊鎭紝璇峰弬闃?https://aka.ms/cpp/structured-output銆?
-          姝ｅ湪鍒涘缓鐩綍鈥淒:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-m0uvij\\Debug\\鈥濄€?
-          姝ｅ湪鍒涘缓鐩綍鈥渃mTC_1dc19.dir\\Debug\\cmTC_1dc19.tlog\\鈥濄€?
+          姝ｅ湪鍒涘缓鐩綍鈥淒:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-npwaef\\Debug\\鈥濄€?
+          姝ｅ湪鍒涘缓鐩綍鈥渃mTC_0ae37.dir\\Debug\\cmTC_0ae37.tlog\\鈥濄€?
         InitializeBuildStatus:
-          姝ｅ湪鍒涘缓鈥渃mTC_1dc19.dir\\Debug\\cmTC_1dc19.tlog\\unsuccessfulbuild鈥濓紝鍥犱负宸叉寚瀹氣€淎lwaysCreate鈥濄€?
-          姝ｅ湪瀵光€渃mTC_1dc19.dir\\Debug\\cmTC_1dc19.tlog\\unsuccessfulbuild鈥濇墽琛?Touch 浠诲姟銆?
+          姝ｅ湪鍒涘缓鈥渃mTC_0ae37.dir\\Debug\\cmTC_0ae37.tlog\\unsuccessfulbuild鈥濓紝鍥犱负宸叉寚瀹氣€淎lwaysCreate鈥濄€?
+          姝ｅ湪瀵光€渃mTC_0ae37.dir\\Debug\\cmTC_0ae37.tlog\\unsuccessfulbuild鈥濇墽琛?Touch 浠诲姟銆?
         ClCompile:
-          D:\\vs_2022\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /std:c++17 /Fo"cmTC_1dc19.dir\\Debug\\\\" /Fd"cmTC_1dc19.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue "D:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-m0uvij\\CheckFunctionExists.cxx"
+          D:\\vs_2022\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /std:c++17 /Fo"cmTC_0ae37.dir\\Debug\\\\" /Fd"cmTC_0ae37.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue "D:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-npwaef\\CheckFunctionExists.cxx"
           鐢ㄤ簬 x64 鐨?Microsoft (R) C/C++ 浼樺寲缂栬瘧鍣?19.44.35215 鐗?
           鐗堟潈鎵€鏈?C) Microsoft Corporation銆備繚鐣欐墍鏈夋潈鍒┿€?
-          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /std:c++17 /Fo"cmTC_1dc19.dir\\Debug\\\\" /Fd"cmTC_1dc19.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue "D:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-m0uvij\\CheckFunctionExists.cxx"
+          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /std:c++17 /Fo"cmTC_0ae37.dir\\Debug\\\\" /Fd"cmTC_0ae37.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue "D:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-npwaef\\CheckFunctionExists.cxx"
           CheckFunctionExists.cxx
         Link:
-          D:\\vs_2022\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"D:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-m0uvij\\Debug\\cmTC_1dc19.exe" /INCREMENTAL /ILK:"cmTC_1dc19.dir\\Debug\\cmTC_1dc19.ilk" /NOLOGO pthread.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:/Creater/Hearts of iron/build/CMakeFiles/CMakeScratch/TryCompile-m0uvij/Debug/cmTC_1dc19.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:/Creater/Hearts of iron/build/CMakeFiles/CMakeScratch/TryCompile-m0uvij/Debug/cmTC_1dc19.lib" /MACHINE:X64  /machine:x64 cmTC_1dc19.dir\\Debug\\CheckFunctionExists.obj
-        LINK : fatal error LNK1104: 鏃犳硶鎵撳紑鏂囦欢鈥減thread.lib鈥?[D:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-m0uvij\\cmTC_1dc19.vcxproj]
-        宸插畬鎴愮敓鎴愰」鐩€淒:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-m0uvij\\cmTC_1dc19.vcxproj鈥?榛樿鐩爣)鐨勬搷浣?- 澶辫触銆?
+          D:\\vs_2022\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"D:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-npwaef\\Debug\\cmTC_0ae37.exe" /INCREMENTAL /ILK:"cmTC_0ae37.dir\\Debug\\cmTC_0ae37.ilk" /NOLOGO pthread.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:/Creater/Hearts of iron/build/CMakeFiles/CMakeScratch/TryCompile-npwaef/Debug/cmTC_0ae37.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:/Creater/Hearts of iron/build/CMakeFiles/CMakeScratch/TryCompile-npwaef/Debug/cmTC_0ae37.lib" /MACHINE:X64  /machine:x64 cmTC_0ae37.dir\\Debug\\CheckFunctionExists.obj
+        LINK : fatal error LNK1104: 鏃犳硶鎵撳紑鏂囦欢鈥減thread.lib鈥?[D:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-npwaef\\cmTC_0ae37.vcxproj]
+        宸插畬鎴愮敓鎴愰」鐩€淒:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-npwaef\\cmTC_0ae37.vcxproj鈥?榛樿鐩爣)鐨勬搷浣?- 澶辫触銆?
         
         鐢熸垚澶辫触銆?
         
-        鈥淒:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-m0uvij\\cmTC_1dc19.vcxproj鈥?榛樿鐩爣) (1) ->
+        鈥淒:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-npwaef\\cmTC_0ae37.vcxproj鈥?榛樿鐩爣) (1) ->
         (Link 鐩爣) -> 
-          LINK : fatal error LNK1104: 鏃犳硶鎵撳紑鏂囦欢鈥減thread.lib鈥?[D:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-m0uvij\\cmTC_1dc19.vcxproj]
+          LINK : fatal error LNK1104: 鏃犳硶鎵撳紑鏂囦欢鈥減thread.lib鈥?[D:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-npwaef\\cmTC_0ae37.vcxproj]
         
             0 涓鍛?
             1 涓敊璇?
         
-        宸茬敤鏃堕棿 00:00:00.44
+        宸茬敤鏃堕棿 00:00:00.46
         
       exitCode: 1
   -
@@ -321,8 +321,8 @@ events:
     checks:
       - "Performing Test HAVE_STDATOMIC"
     directories:
-      source: "D:/Creater/Hearts of iron/build/CMakeFiles/CMakeScratch/TryCompile-xclxjl"
-      binary: "D:/Creater/Hearts of iron/build/CMakeFiles/CMakeScratch/TryCompile-xclxjl"
+      source: "D:/Creater/Hearts of iron/build/CMakeFiles/CMakeScratch/TryCompile-9z14tz"
+      binary: "D:/Creater/Hearts of iron/build/CMakeFiles/CMakeScratch/TryCompile-9z14tz"
     cmakeVariables:
       CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /GR /EHsc"
       CMAKE_CXX_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
@@ -332,40 +332,40 @@ events:
       variable: "HAVE_STDATOMIC"
       cached: true
       stdout: |
-        Change Dir: 'D:/Creater/Hearts of iron/build/CMakeFiles/CMakeScratch/TryCompile-xclxjl'
+        Change Dir: 'D:/Creater/Hearts of iron/build/CMakeFiles/CMakeScratch/TryCompile-9z14tz'
         
-        Run Build Command(s): D:/vs_2022/MSBuild/Current/Bin/amd64/MSBuild.exe cmTC_08100.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        Run Build Command(s): D:/vs_2022/MSBuild/Current/Bin/amd64/MSBuild.exe cmTC_7d28a.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
         閫傜敤浜?.NET Framework MSBuild 鐗堟湰 17.14.19+164abd434
-        鐢熸垚鍚姩鏃堕棿涓?2026/6/11 22:55:21銆?
+        鐢熸垚鍚姩鏃堕棿涓?2026/6/15 11:14:24銆?
         
-        鑺傜偣 1 涓婄殑椤圭洰鈥淒:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-xclxjl\\cmTC_08100.vcxproj鈥?榛樿鐩爣)銆?
+        鑺傜偣 1 涓婄殑椤圭洰鈥淒:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-9z14tz\\cmTC_7d28a.vcxproj鈥?榛樿鐩爣)銆?
         PrepareForBuild:
-          姝ｅ湪鍒涘缓鐩綍鈥渃mTC_08100.dir\\Debug\\鈥濄€?
+          姝ｅ湪鍒涘缓鐩綍鈥渃mTC_7d28a.dir\\Debug\\鈥濄€?
           宸插惎鐢ㄧ粨鏋勫寲杈撳嚭銆傜紪璇戝櫒璇婃柇鐨勬牸寮忚缃皢鍙嶆槧閿欒灞傛缁撴瀯銆傛湁鍏宠缁嗕俊鎭紝璇峰弬闃?https://aka.ms/cpp/structured-output銆?
-          姝ｅ湪鍒涘缓鐩綍鈥淒:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-xclxjl\\Debug\\鈥濄€?
-          姝ｅ湪鍒涘缓鐩綍鈥渃mTC_08100.dir\\Debug\\cmTC_08100.tlog\\鈥濄€?
+          姝ｅ湪鍒涘缓鐩綍鈥淒:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-9z14tz\\Debug\\鈥濄€?
+          姝ｅ湪鍒涘缓鐩綍鈥渃mTC_7d28a.dir\\Debug\\cmTC_7d28a.tlog\\鈥濄€?
         InitializeBuildStatus:
-          姝ｅ湪鍒涘缓鈥渃mTC_08100.dir\\Debug\\cmTC_08100.tlog\\unsuccessfulbuild鈥濓紝鍥犱负宸叉寚瀹氣€淎lwaysCreate鈥濄€?
-          姝ｅ湪瀵光€渃mTC_08100.dir\\Debug\\cmTC_08100.tlog\\unsuccessfulbuild鈥濇墽琛?Touch 浠诲姟銆?
+          姝ｅ湪鍒涘缓鈥渃mTC_7d28a.dir\\Debug\\cmTC_7d28a.tlog\\unsuccessfulbuild鈥濓紝鍥犱负宸叉寚瀹氣€淎lwaysCreate鈥濄€?
+          姝ｅ湪瀵光€渃mTC_7d28a.dir\\Debug\\cmTC_7d28a.tlog\\unsuccessfulbuild鈥濇墽琛?Touch 浠诲姟銆?
         ClCompile:
-          D:\\vs_2022\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D HAVE_STDATOMIC /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /std:c++17 /Fo"cmTC_08100.dir\\Debug\\\\" /Fd"cmTC_08100.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue "D:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-xclxjl\\src.cxx"
+          D:\\vs_2022\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D HAVE_STDATOMIC /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /std:c++17 /Fo"cmTC_7d28a.dir\\Debug\\\\" /Fd"cmTC_7d28a.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue "D:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-9z14tz\\src.cxx"
           鐢ㄤ簬 x64 鐨?Microsoft (R) C/C++ 浼樺寲缂栬瘧鍣?19.44.35215 鐗?
           鐗堟潈鎵€鏈?C) Microsoft Corporation銆備繚鐣欐墍鏈夋潈鍒┿€?
-          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D HAVE_STDATOMIC /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /std:c++17 /Fo"cmTC_08100.dir\\Debug\\\\" /Fd"cmTC_08100.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue "D:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-xclxjl\\src.cxx"
+          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D HAVE_STDATOMIC /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /std:c++17 /Fo"cmTC_7d28a.dir\\Debug\\\\" /Fd"cmTC_7d28a.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue "D:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-9z14tz\\src.cxx"
           src.cxx
         Link:
-          D:\\vs_2022\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"D:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-xclxjl\\Debug\\cmTC_08100.exe" /INCREMENTAL /ILK:"cmTC_08100.dir\\Debug\\cmTC_08100.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:/Creater/Hearts of iron/build/CMakeFiles/CMakeScratch/TryCompile-xclxjl/Debug/cmTC_08100.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:/Creater/Hearts of iron/build/CMakeFiles/CMakeScratch/TryCompile-xclxjl/Debug/cmTC_08100.lib" /MACHINE:X64  /machine:x64 cmTC_08100.dir\\Debug\\src.obj
-          cmTC_08100.vcxproj -> D:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-xclxjl\\Debug\\cmTC_08100.exe
+          D:\\vs_2022\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"D:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-9z14tz\\Debug\\cmTC_7d28a.exe" /INCREMENTAL /ILK:"cmTC_7d28a.dir\\Debug\\cmTC_7d28a.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:/Creater/Hearts of iron/build/CMakeFiles/CMakeScratch/TryCompile-9z14tz/Debug/cmTC_7d28a.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:/Creater/Hearts of iron/build/CMakeFiles/CMakeScratch/TryCompile-9z14tz/Debug/cmTC_7d28a.lib" /MACHINE:X64  /machine:x64 cmTC_7d28a.dir\\Debug\\src.obj
+          cmTC_7d28a.vcxproj -> D:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-9z14tz\\Debug\\cmTC_7d28a.exe
         FinalizeBuildStatus:
-          姝ｅ湪鍒犻櫎鏂囦欢鈥渃mTC_08100.dir\\Debug\\cmTC_08100.tlog\\unsuccessfulbuild鈥濄€?
-          姝ｅ湪瀵光€渃mTC_08100.dir\\Debug\\cmTC_08100.tlog\\cmTC_08100.lastbuildstate鈥濇墽琛?Touch 浠诲姟銆?
-        宸插畬鎴愮敓鎴愰」鐩€淒:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-xclxjl\\cmTC_08100.vcxproj鈥?榛樿鐩爣)鐨勬搷浣溿€?
+          姝ｅ湪鍒犻櫎鏂囦欢鈥渃mTC_7d28a.dir\\Debug\\cmTC_7d28a.tlog\\unsuccessfulbuild鈥濄€?
+          姝ｅ湪瀵光€渃mTC_7d28a.dir\\Debug\\cmTC_7d28a.tlog\\cmTC_7d28a.lastbuildstate鈥濇墽琛?Touch 浠诲姟銆?
+        宸插畬鎴愮敓鎴愰」鐩€淒:\\Creater\\Hearts of iron\\build\\CMakeFiles\\CMakeScratch\\TryCompile-9z14tz\\cmTC_7d28a.vcxproj鈥?榛樿鐩爣)鐨勬搷浣溿€?
         
         宸叉垚鍔熺敓鎴愩€?
             0 涓鍛?
             0 涓敊璇?
         
-        宸茬敤鏃堕棿 00:00:00.96
+        宸茬敤鏃堕棿 00:00:00.74
         
       exitCode: 0
 ...

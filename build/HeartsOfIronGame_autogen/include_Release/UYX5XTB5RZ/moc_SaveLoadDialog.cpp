@@ -41,7 +41,7 @@ template <> constexpr inline auto SaveLoadDialog::qt_create_metaobjectdata<qt_me
         "SaveLoadDialog",
         "gameLoaded",
         "",
-        "Player",
+        "PlayerSystem",
         "loadedPlayer",
         "onSlotSelected",
         "id",
@@ -51,7 +51,7 @@ template <> constexpr inline auto SaveLoadDialog::qt_create_metaobjectdata<qt_me
 
     QtMocHelpers::UintData qt_methods {
         // Signal 'gameLoaded'
-        QtMocHelpers::SignalData<void(const Player &)>(1, 2, QMC::AccessPublic, QMetaType::Void, {{
+        QtMocHelpers::SignalData<void(const PlayerSystem &)>(1, 2, QMC::AccessPublic, QMetaType::Void, {{
             { 0x80000000 | 3, 4 },
         }}),
         // Slot 'onSlotSelected'
@@ -85,7 +85,7 @@ void SaveLoadDialog::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
     auto *_t = static_cast<SaveLoadDialog *>(_o);
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
-        case 0: _t->gameLoaded((*reinterpret_cast<std::add_pointer_t<Player>>(_a[1]))); break;
+        case 0: _t->gameLoaded((*reinterpret_cast<std::add_pointer_t<PlayerSystem>>(_a[1]))); break;
         case 1: _t->onSlotSelected((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
         case 2: _t->onActionTriggered(); break;
         case 3: _t->onDeleteTriggered(); break;
@@ -93,7 +93,7 @@ void SaveLoadDialog::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
         }
     }
     if (_c == QMetaObject::IndexOfMethod) {
-        if (QtMocHelpers::indexOfMethod<void (SaveLoadDialog::*)(const Player & )>(_a, &SaveLoadDialog::gameLoaded, 0))
+        if (QtMocHelpers::indexOfMethod<void (SaveLoadDialog::*)(const PlayerSystem & )>(_a, &SaveLoadDialog::gameLoaded, 0))
             return;
     }
 }
@@ -130,7 +130,7 @@ int SaveLoadDialog::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void SaveLoadDialog::gameLoaded(const Player & _t1)
+void SaveLoadDialog::gameLoaded(const PlayerSystem & _t1)
 {
     QMetaObject::activate<void>(this, &staticMetaObject, 0, nullptr, _t1);
 }
